@@ -86,7 +86,7 @@ function Home() {
             <div className={`space-y-6 sm:space-y-8 transition-all duration-700 delay-100 ${visibleSections.hero ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
               <div className="inline-flex items-center gap-3 bg-amber-100 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform">
                 <Sparkles size={16} className="sm:w-[18px] sm:h-[18px] text-amber-700 animate-pulse" />
-                <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">PREMIUM CATERING SINCE 2010</span>
+                <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">PREMIUM CATERING SINCE 2021</span>
               </div>
               
               <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-amber-900 leading-[1.1]">
