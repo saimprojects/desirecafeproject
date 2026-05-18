@@ -117,7 +117,7 @@ function Services() {
     {
       title: "Exhibition Catering",
       desc: "Professional catering for exhibitions and trade shows. Keep your guests refreshed while you focus on your business.",
-      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.09_PM_1_jsgvbx.jpg",
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop",
       icon: <Award size={32} />,
       features: ["Trade Shows", "Exhibitions", "Product Launches", "Business Expos"],
       color: "from-emerald-600 to-teal-600",
