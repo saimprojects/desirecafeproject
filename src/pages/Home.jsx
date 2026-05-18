@@ -182,7 +182,7 @@ function Home() {
               />
               {/* Small floating quote card */}
               <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-amber-800 text-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs hover:scale-105 transition-transform duration-300">
-                <Coffee size={20} className="mb-2 text-amber-200" />
+                {/* <Coffee size={20} className="mb-2 text-amber-200" /> */}
                 <p className="text-xs sm:text-sm font-medium leading-relaxed text-amber-100 italic">
                   "Where Desires Are Brewed."
                 </p>
@@ -201,11 +201,11 @@ function Home() {
               </h2>
 
               {/* Decorative divider */}
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <div className="h-px flex-1 bg-gradient-to-r from-amber-300 to-transparent"></div>
                 <Coffee size={18} className="text-amber-500" />
                 <div className="h-px flex-1 bg-gradient-to-l from-amber-300 to-transparent"></div>
-              </div>
+              </div> */}
 
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
                 A journey of fulfillment in a world of unfulfilled coffee cravings — that is when Desire's journey began. 
