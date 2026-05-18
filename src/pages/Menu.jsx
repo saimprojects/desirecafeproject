@@ -38,7 +38,7 @@ function Menu() {
   const menuData = {
     coffee: {
       icon: <Coffee size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-amber-700 to-amber-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-amber-50 to-orange-50",
       label: "Coffee",
       items: [
@@ -61,7 +61,7 @@ function Menu() {
 
     nonCoffee: {
       icon: <CupSoda size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-emerald-700 to-teal-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-emerald-50 to-teal-50",
       label: "Non-Coffee",
       items: [
@@ -75,7 +75,7 @@ function Menu() {
 
     smoothies: {
       icon: <GlassWater size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-rose-700 to-pink-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-rose-50 to-pink-50",
       label: "Smoothies",
       items: [
@@ -90,7 +90,7 @@ function Menu() {
 
     frappe: {
       icon: <IceCream size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-purple-700 to-indigo-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-purple-50 to-indigo-50",
       label: "Frappe",
       items: [
@@ -103,7 +103,7 @@ function Menu() {
 
     iceCream: {
       icon: <IceCream size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-sky-700 to-blue-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-sky-50 to-blue-50",
       label: "Ice Cream",
       items: [
@@ -120,7 +120,7 @@ function Menu() {
 
     specialtyTea: {
       icon: <CupSoda size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-amber-700 to-yellow-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-amber-50 to-yellow-50",
       label: "Specialty Tea",
       items: [
@@ -134,7 +134,7 @@ function Menu() {
 
     filterCoffee: {
       icon: <Droplets size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-stone-700 to-zinc-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-stone-50 to-zinc-50",
       label: "Filter Coffee",
       items: [
@@ -146,7 +146,7 @@ function Menu() {
 
     milkAlt: {
       icon: <Milk size={20} className="sm:w-6 sm:h-6" />,
-      color: "from-neutral-700 to-stone-800",
+      color: "from-amber-900 to-stone-800",
       bgColor: "from-neutral-50 to-stone-50",
       label: "Milk Alternative",
       items: [
