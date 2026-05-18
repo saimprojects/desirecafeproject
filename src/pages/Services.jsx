@@ -159,47 +159,121 @@ function Services() {
       )}
 
       {/* Hero Section */}
-      <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-20 sm:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-amber-600 rounded-full blur-3xl opacity-20"></div>
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-orange-600 rounded-full blur-3xl opacity-20"></div>
+     <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-20 sm:py-28 overflow-hidden">
+  <div className="absolute inset-0 bg-black/20"></div>
+  <div className="absolute -top-20 -right-20 w-80 h-80 bg-amber-600 rounded-full blur-3xl opacity-20"></div>
+  <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-orange-600 rounded-full blur-3xl opacity-20"></div>
+  
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+      <Sparkles size={16} className="sm:w-5 sm:h-5" />
+      <span className="text-xs sm:text-sm tracking-wide">PREMIUM SERVICES</span>
+    </div>
+    
+    <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      Luxury Catering
+      <span className="block text-amber-300">Services</span>
+    </h1>
+    
+    {/* Welcome Message Box */}
+    <div className={`max-w-4xl mx-auto text-left space-y-5 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      
+      {/* Welcome Greeting */}
+      <div className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8">
+        <p className="text-amber-100 text-lg sm:text-xl italic mb-4">
+          "Dear Ladies and Gentlemen,
+        </p>
+        <p className="text-white text-base sm:text-lg leading-relaxed">
+          It gives me great pleasure to welcome you to <span className="font-bold text-amber-300">Desire's Specialty Catering</span>.
+        </p>
+      </div>
+
+      {/* Company Introduction */}
+      <div className="space-y-4">
+        <p className="text-white text-base sm:text-lg leading-relaxed">
+          Desire's Specialty Catering, based in <span className="font-semibold text-amber-300">Abu Dhabi</span>, is your perfect professional catering & events partner in the UAE capital.
+        </p>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-            <Sparkles size={16} className="sm:w-5 sm:h-5" />
-            <span className="text-xs sm:text-sm tracking-wide">PREMIUM SERVICES</span>
+        {/* Bullet Points - What we offer */}
+        <div className="grid sm:grid-cols-2 gap-3 mt-4">
+          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+              <span className="text-amber-300 text-sm font-bold">✓</span>
+            </div>
+            <span className="text-white text-sm sm:text-base">Top Quality ingredients</span>
           </div>
-          <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Luxury Catering
-            <span className="block text-amber-300">Services</span>
-          </h1>
-          <p className={`text-amber-100 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Dear Ladies and Gentlemen,
-It gives me great pleasure to welcome you to Desire's Specialty Catering,
-Desire's Specialty Catering based In Abu Dhabi is your perfect professional catering & events in the Abu Dhabi. For our Customers, this means Top quality in the ingredients used, craftmanship in the preparation, personal service, and perfect organizational processes.
-Desire's Specialty Catering Focuses on you and your wishes!
-To the Point:
-We have the appropriate know-how to realize your ideas perfectly
-I hope you enjoy discovering our First-class products, which we prepare for you with love and creativity.
-
-          </p>
-          <div className={`mt-8 sm:mt-10 flex flex-wrap justify-center gap-3 sm:gap-4 transition-all duration-700 delay-300 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <Link to="/contact" className="bg-white text-amber-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
-              Get Quote <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
-            </Link>
-            <Link to="/menu" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 text-sm sm:text-base">
-              View Menu
-            </Link>
+          
+          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+              <span className="text-amber-300 text-sm font-bold">✓</span>
+            </div>
+            <span className="text-white text-sm sm:text-base">Craftsmanship in preparation</span>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-2 sm:w-1.5 sm:h-3 bg-white rounded-full mt-2 animate-ping"></div>
+          
+          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+              <span className="text-amber-300 text-sm font-bold">✓</span>
+            </div>
+            <span className="text-white text-sm sm:text-base">Personal service</span>
+          </div>
+          
+          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+              <span className="text-amber-300 text-sm font-bold">✓</span>
+            </div>
+            <span className="text-white text-sm sm:text-base">Perfect organizational processes</span>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Customer Focus Highlight */}
+      <div className="bg-gradient-to-r from-amber-600/30 to-amber-500/20 rounded-2xl p-5 border-l-4 border-amber-400 mt-4">
+        <p className="text-white text-base sm:text-lg leading-relaxed">
+          <span className="font-bold text-amber-300">Desire's Specialty Catering</span> focuses on 
+          <span className="font-bold text-amber-300"> YOU and your wishes!</span>
+        </p>
+      </div>
+
+      {/* To the Point */}
+      <div className="space-y-3">
+        <p className="text-amber-300 font-bold text-xl">
+          To the Point:
+        </p>
+        <p className="text-white text-base sm:text-lg leading-relaxed">
+          We have the appropriate <span className="font-bold text-amber-300">know-how</span> to realize your ideas perfectly.
+        </p>
+      </div>
+
+      {/* Closing Statement */}
+      <div className="bg-white/5 rounded-2xl p-5 mt-4">
+        <p className="text-white text-base sm:text-lg leading-relaxed italic">
+          "I hope you enjoy discovering our <span className="font-bold text-amber-300">First-class products</span>, 
+          which we prepare for you with love and creativity."
+        </p>
+      </div>
+    </div>
+
+    {/* Buttons */}
+    <div className={`mt-10 sm:mt-12 flex flex-wrap justify-center gap-3 sm:gap-4 transition-all duration-700 delay-300 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      <Link to="/contact" className="bg-white text-amber-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
+        Get Quote <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
+      </Link>
+      <Link to="/menu" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 text-sm sm:text-base">
+        View Menu
+      </Link>
+      <Link to="/contact" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
+        <MessageCircle size={16} /> WhatsApp Us
+      </Link>
+    </div>
+  </div>
+
+  {/* Scroll Indicator */}
+  <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center">
+      <div className="w-1 h-2 sm:w-1.5 sm:h-3 bg-white rounded-full mt-2 animate-ping"></div>
+    </div>
+  </div>
+</section>
 
       {/* Services Grid Section */}
       <section id="services-grid" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
