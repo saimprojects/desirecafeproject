@@ -9,7 +9,8 @@ import {
   Clock, 
   Heart,
   ChevronUp,
-  MessageCircle
+  MessageCircle,
+  Headphones
 } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 
@@ -201,6 +202,19 @@ function Footer() {
                 <p className="font-semibold text-red-400">Saturday - Sunday</p>
                 <p className="text-white text-lg">Closed</p>
               </div>
+            </div>
+            
+            {/* ✅ NEW NOTE ADDED HERE */}
+            <div className="mt-6 pt-4 border-t border-amber-700/30">
+              <div className="flex items-center justify-center gap-2 text-amber-300/80">
+                <Headphones size={16} className="text-amber-400" />
+                <p className="text-sm sm:text-base">
+                  📞 For inquiries & urgent requests - <span className="font-semibold text-amber-300">24/7 Available</span>
+                </p>
+              </div>
+              <p className="text-amber-300/60 text-xs mt-2">
+                WhatsApp, Call, or Email us anytime - We're here to help!
+              </p>
             </div>
           </div>
         </div>

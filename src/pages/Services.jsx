@@ -43,7 +43,7 @@ function Services() {
       { threshold: 0.2, triggerOnce: true }
     );
 
-    const sections = ["hero", "services-grid", "features", "cta"];
+    const sections = ["hero", "royal-visit", "services-grid", "features", "cta"];
     sections.forEach((section) => {
       const element = document.getElementById(section);
       if (element) observer.observe(element);
@@ -159,121 +159,225 @@ function Services() {
       )}
 
       {/* Hero Section */}
-     <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-20 sm:py-28 overflow-hidden">
-  <div className="absolute inset-0 bg-black/20"></div>
-  <div className="absolute -top-20 -right-20 w-80 h-80 bg-amber-600 rounded-full blur-3xl opacity-20"></div>
-  <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-orange-600 rounded-full blur-3xl opacity-20"></div>
-  
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-      <Sparkles size={16} className="sm:w-5 sm:h-5" />
-      <span className="text-xs sm:text-sm tracking-wide">PREMIUM SERVICES</span>
-    </div>
-    
-    <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-      Luxury Catering
-      <span className="block text-amber-300">Services</span>
-    </h1>
-    
-    {/* Welcome Message Box */}
-    <div className={`max-w-4xl mx-auto text-left space-y-5 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-      
-      {/* Welcome Greeting */}
-      <div className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8">
-        <p className="text-amber-100 text-lg sm:text-xl italic mb-4">
-          "Dear Ladies and Gentlemen,
-        </p>
-        <p className="text-white text-base sm:text-lg leading-relaxed">
-          It gives me great pleasure to welcome you to <span className="font-bold text-amber-300">Desire's Specialty Catering</span>.
-        </p>
-      </div>
-
-      {/* Company Introduction */}
-      <div className="space-y-4">
-        <p className="text-white text-base sm:text-lg leading-relaxed">
-          Desire's Specialty Catering, based in <span className="font-semibold text-amber-300">Abu Dhabi</span>, is your perfect professional catering & events partner in the UAE capital.
-        </p>
+      <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute -top-20 -right-20 w-80 h-80 bg-amber-600 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-orange-600 rounded-full blur-3xl opacity-20"></div>
         
-        {/* Bullet Points - What we offer */}
-        <div className="grid sm:grid-cols-2 gap-3 mt-4">
-          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
-            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-              <span className="text-amber-300 text-sm font-bold">✓</span>
-            </div>
-            <span className="text-white text-sm sm:text-base">Top Quality ingredients</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+            <Sparkles size={16} className="sm:w-5 sm:h-5" />
+            <span className="text-xs sm:text-sm tracking-wide">PREMIUM SERVICES</span>
           </div>
           
-          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
-            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-              <span className="text-amber-300 text-sm font-bold">✓</span>
-            </div>
-            <span className="text-white text-sm sm:text-base">Craftsmanship in preparation</span>
-          </div>
+          <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            Luxury Catering
+            <span className="block text-amber-300">Services</span>
+          </h1>
           
-          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
-            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-              <span className="text-amber-300 text-sm font-bold">✓</span>
+          {/* Welcome Message Box */}
+          <div className={`max-w-4xl mx-auto text-left space-y-5 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            
+            {/* Welcome Greeting */}
+            <div className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8">
+              <p className="text-amber-100 text-lg sm:text-xl italic mb-4">
+                "Dear Ladies and Gentlemen,
+              </p>
+              <p className="text-white text-base sm:text-lg leading-relaxed">
+                It gives me great pleasure to welcome you to <span className="font-bold text-amber-300">Desire's Specialty Catering</span>.
+              </p>
             </div>
-            <span className="text-white text-sm sm:text-base">Personal service</span>
+
+            {/* Company Introduction */}
+            <div className="space-y-4">
+              <p className="text-white text-base sm:text-lg leading-relaxed">
+                Desire's Specialty Catering, based in <span className="font-semibold text-amber-300">Abu Dhabi</span>, is your perfect professional catering & events partner in the UAE capital.
+              </p>
+              
+              {/* Bullet Points - What we offer */}
+              <div className="grid sm:grid-cols-2 gap-3 mt-4">
+                <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                  <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-amber-300 text-sm font-bold">✓</span>
+                  </div>
+                  <span className="text-white text-sm sm:text-base">Top Quality ingredients</span>
+                </div>
+                
+                <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                  <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-amber-300 text-sm font-bold">✓</span>
+                  </div>
+                  <span className="text-white text-sm sm:text-base">Craftsmanship in preparation</span>
+                </div>
+                
+                <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                  <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-amber-300 text-sm font-bold">✓</span>
+                  </div>
+                  <span className="text-white text-sm sm:text-base">Personal service</span>
+                </div>
+                
+                <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                  <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-amber-300 text-sm font-bold">✓</span>
+                  </div>
+                  <span className="text-white text-sm sm:text-base">Perfect organizational processes</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Customer Focus Highlight */}
+            <div className="bg-gradient-to-r from-amber-600/30 to-amber-500/20 rounded-2xl p-5 border-l-4 border-amber-400 mt-4">
+              <p className="text-white text-base sm:text-lg leading-relaxed">
+                <span className="font-bold text-amber-300">Desire's Specialty Catering</span> focuses on 
+                <span className="font-bold text-amber-300"> YOU and your wishes!</span>
+              </p>
+            </div>
+
+            {/* To the Point */}
+            <div className="space-y-3">
+              <p className="text-amber-300 font-bold text-xl">
+                To the Point:
+              </p>
+              <p className="text-white text-base sm:text-lg leading-relaxed">
+                We have the appropriate <span className="font-bold text-amber-300">know-how</span> to realize your ideas perfectly.
+              </p>
+            </div>
+
+            {/* Closing Statement */}
+            <div className="bg-white/5 rounded-2xl p-5 mt-4">
+              <p className="text-white text-base sm:text-lg leading-relaxed italic">
+                "I hope you enjoy discovering our <span className="font-bold text-amber-300">First-class products</span>, 
+                which we prepare for you with love and creativity."
+              </p>
+            </div>
           </div>
-          
-          <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
-            <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-              <span className="text-amber-300 text-sm font-bold">✓</span>
-            </div>
-            <span className="text-white text-sm sm:text-base">Perfect organizational processes</span>
+
+          {/* Buttons */}
+          <div className={`mt-10 sm:mt-12 flex flex-wrap justify-center gap-3 sm:gap-4 transition-all duration-700 delay-300 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <Link to="/contact" className="bg-white text-amber-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
+              Get Quote <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
+            </Link>
+            <Link to="/menu" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 text-sm sm:text-base">
+              View Menu
+            </Link>
+            <Link to="/contact" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
+              <MessageCircle size={16} /> WhatsApp Us
+            </Link>
           </div>
         </div>
-      </div>
 
-      {/* Customer Focus Highlight */}
-      <div className="bg-gradient-to-r from-amber-600/30 to-amber-500/20 rounded-2xl p-5 border-l-4 border-amber-400 mt-4">
-        <p className="text-white text-base sm:text-lg leading-relaxed">
-          <span className="font-bold text-amber-300">Desire's Specialty Catering</span> focuses on 
-          <span className="font-bold text-amber-300"> YOU and your wishes!</span>
-        </p>
-      </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-2 sm:w-1.5 sm:h-3 bg-white rounded-full mt-2 animate-ping"></div>
+          </div>
+        </div>
+      </section>
 
-      {/* To the Point */}
-      <div className="space-y-3">
-        <p className="text-amber-300 font-bold text-xl">
-          To the Point:
-        </p>
-        <p className="text-white text-base sm:text-lg leading-relaxed">
-          We have the appropriate <span className="font-bold text-amber-300">know-how</span> to realize your ideas perfectly.
-        </p>
-      </div>
+      {/* ==================== VIP ROYAL VISIT SECTION ==================== */}
+      <section id="royal-visit" className="py-16 sm:py-20 bg-gradient-to-br from-amber-950 via-amber-900 to-stone-900 relative overflow-hidden">
+        {/* Top & bottom gold lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
 
-      {/* Closing Statement */}
-      <div className="bg-white/5 rounded-2xl p-5 mt-4">
-        <p className="text-white text-base sm:text-lg leading-relaxed italic">
-          "I hope you enjoy discovering our <span className="font-bold text-amber-300">First-class products</span>, 
-          which we prepare for you with love and creativity."
-        </p>
-      </div>
-    </div>
+        {/* Background glow blobs */}
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-500 rounded-full blur-3xl opacity-10 pointer-events-none"></div>
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-yellow-500 rounded-full blur-3xl opacity-10 pointer-events-none"></div>
 
-    {/* Buttons */}
-    <div className={`mt-10 sm:mt-12 flex flex-wrap justify-center gap-3 sm:gap-4 transition-all duration-700 delay-300 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-      <Link to="/contact" className="bg-white text-amber-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
-        Get Quote <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
-      </Link>
-      <Link to="/menu" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 text-sm sm:text-base">
-        View Menu
-      </Link>
-      <Link to="/contact" className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-amber-900 transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
-        <MessageCircle size={16} /> WhatsApp Us
-      </Link>
-    </div>
-  </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-  {/* Scroll Indicator */}
-  <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center">
-      <div className="w-1 h-2 sm:w-1.5 sm:h-3 bg-white rounded-full mt-2 animate-ping"></div>
-    </div>
-  </div>
-</section>
+          {/* Badge */}
+          <div className="flex justify-center mb-10 sm:mb-14">
+            <div className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 backdrop-blur px-5 py-2 rounded-full">
+              <Crown size={15} className="text-amber-300" />
+              <span className="text-amber-300 font-semibold text-xs sm:text-sm tracking-widest uppercase">Royal Honor</span>
+              <Crown size={15} className="text-amber-300" />
+            </div>
+          </div>
+
+          <div className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center transition-all duration-700 ${visibleSections['royal-visit'] ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+
+            {/* Image Side */}
+            <div className="relative group order-1 lg:order-1">
+              {/* Gold glow border */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779101469/WhatsApp_Image_2026-05-18_at_3.50.21_PM_abgmzu.jpg"
+                  alt="His Highness Sheikh Mohammed bin Rashid Al Maktoum visiting Desires Café"
+                  className="w-full h-[300px] sm:h-[420px] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-950/50 via-transparent to-transparent rounded-2xl"></div>
+              </div>
+
+              {/* Badge overlay */}
+              <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-5 bg-amber-400 text-amber-950 px-3 sm:px-4 py-2 rounded-xl shadow-2xl font-bold text-xs sm:text-sm flex items-center gap-1.5 z-10">
+                <Star size={13} className="fill-amber-950 shrink-0" />
+                <span>UAE Government Annual Meetings</span>
+              </div>
+            </div>
+
+            {/* Text Side */}
+            <div className="text-white space-y-6 order-2 lg:order-2">
+
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3">
+                <div className="h-px w-8 bg-amber-400 shrink-0"></div>
+                <span className="text-amber-400 text-xs tracking-widest uppercase font-semibold">A Moment of Honor</span>
+              </div>
+
+              {/* Heading */}
+              <div>
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+                  Welcoming
+                  <span className="block text-amber-300 mt-1">His Highness</span>
+                </h2>
+                <p className="text-white/80 text-xl sm:text-2xl font-serif mt-2 leading-snug">
+                  Sheikh Mohammed bin Rashid Al Maktoum
+                </p>
+              </div>
+
+              {/* Gold divider */}
+              <div className="h-px bg-gradient-to-r from-amber-400/60 to-transparent"></div>
+
+              {/* Body text */}
+              <p className="text-amber-100/90 text-base sm:text-lg leading-relaxed">
+                We were deeply honored to welcome{" "}
+                <span className="font-semibold text-amber-300">His Highness Sheikh Mohammed bin Rashid Al Maktoum</span>{" "}
+                to <span className="font-semibold text-white">Desires Café</span> during our participation in organizing the{" "}
+                <span className="font-semibold text-amber-300">UAE Government Annual Meetings</span>.
+              </p>
+
+              <p className="text-amber-100/80 text-base sm:text-lg leading-relaxed">
+                We're grateful for the success of this prestigious event, which allowed us to showcase the quality, elegance, and dedication that define every service we offer.
+              </p>
+
+              {/* Stat cards */}
+              <div className="grid grid-cols-2 gap-4 pt-2">
+                <div className="bg-white/5 border border-amber-400/20 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                  <p className="text-amber-300 font-bold text-lg sm:text-xl">UAE Gov.</p>
+                  <p className="text-amber-100/60 text-xs sm:text-sm mt-1">Annual Meetings</p>
+                </div>
+                <div className="bg-white/5 border border-amber-400/20 rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                  <p className="text-amber-300 font-bold text-lg sm:text-xl">VIP</p>
+                  <p className="text-amber-100/60 text-xs sm:text-sm mt-1">Royal Service Standard</p>
+                </div>
+              </div>
+
+              {/* Quote */}
+              <div className="border-l-4 border-amber-400 pl-5 py-1">
+                <p className="text-amber-100/75 italic text-sm sm:text-base leading-relaxed">
+                  "An unforgettable honor that reflects our commitment to excellence at the highest level."
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {/* ==================== END VIP ROYAL VISIT SECTION ==================== */}
 
       {/* Services Grid Section */}
       <section id="services-grid" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
