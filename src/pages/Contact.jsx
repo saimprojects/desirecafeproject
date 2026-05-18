@@ -109,19 +109,19 @@ function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-white">
       
-      {/* Hero Section */}
-      <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-16 sm:py-24 overflow-hidden">
+      {/* Hero Section - Slim/Compact */}
+      <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-8 sm:py-10 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-            <Sparkles size={16} className="sm:w-5 sm:h-5" />
-            <span className="text-xs sm:text-sm tracking-wide">GET IN TOUCH</span>
+          <div className={`inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-3 sm:px-4 py-1 rounded-full mb-2 sm:mb-3 transition-all duration-700 ${visibleSections.pageLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+            <Sparkles size={13} />
+            <span className="text-xs tracking-wide">GET IN TOUCH</span>
           </div>
-          <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Let's Start Your
-            <span className="block text-amber-300">Journey With Us</span>
+          <h1 className={`font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 transition-all duration-700 delay-100 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            Let's Start Your{" "}
+            <span className="text-amber-300">Journey With Us</span>
           </h1>
-          <p className={`text-amber-100 text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-4 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <p className={`text-amber-100 text-sm sm:text-base max-w-xl mx-auto px-4 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             Have a question or ready to book? Fill the form and we'll respond on WhatsApp within minutes.
           </p>
         </div>
