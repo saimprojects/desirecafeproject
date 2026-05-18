@@ -104,36 +104,36 @@ function Services() {
       bgColor: "from-amber-50 to-orange-50",
       delay: 0.2
     },
-    {
-      title: "Private Events",
-      desc: "Customized catering services for birthdays, family events, and luxury celebrations. Tailored menus for your personal touch.",
-      image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
-      icon: <Calendar size={32} />,
-      features: ["Birthday Parties", "Anniversaries", "Family Gatherings", "Private Dinners"],
-      color: "from-purple-600 to-fuchsia-600",
-      bgColor: "from-purple-50 to-fuchsia-50",
-      delay: 0.3
-    },
-    {
-      title: "Exhibition Catering",
-      desc: "Professional catering for exhibitions and trade shows. Keep your guests refreshed while you focus on your business.",
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop",
-      icon: <Award size={32} />,
-      features: ["Trade Shows", "Exhibitions", "Product Launches", "Business Expos"],
-      color: "from-emerald-600 to-teal-600",
-      bgColor: "from-emerald-50 to-teal-50",
-      delay: 0.4
-    },
-    {
-      title: "VIP Celebrations",
-      desc: "Exclusive catering for high-end VIP events, galas, and private soirees. Luxury experience with white-glove service.",
-      image: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=1200&auto=format&fit=crop",
-      icon: <Crown size={32} />,
-      features: ["Gala Dinners", "VIP Parties", "Luxury Events", "Celebrity Gatherings"],
-      color: "from-amber-700 to-yellow-700",
-      bgColor: "from-amber-50 to-yellow-50",
-      delay: 0.5
-    }
+    // {
+    //   title: "Private Events",
+    //   desc: "Customized catering services for birthdays, family events, and luxury celebrations. Tailored menus for your personal touch.",
+    //   image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
+    //   icon: <Calendar size={32} />,
+    //   features: ["Birthday Parties", "Anniversaries", "Family Gatherings", "Private Dinners"],
+    //   color: "from-purple-600 to-fuchsia-600",
+    //   bgColor: "from-purple-50 to-fuchsia-50",
+    //   delay: 0.3
+    // },
+    // {
+    //   title: "Exhibition Catering",
+    //   desc: "Professional catering for exhibitions and trade shows. Keep your guests refreshed while you focus on your business.",
+    //   image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop",
+    //   icon: <Award size={32} />,
+    //   features: ["Trade Shows", "Exhibitions", "Product Launches", "Business Expos"],
+    //   color: "from-emerald-600 to-teal-600",
+    //   bgColor: "from-emerald-50 to-teal-50",
+    //   delay: 0.4
+    // },
+    // {
+    //   title: "VIP Celebrations",
+    //   desc: "Exclusive catering for high-end VIP events, galas, and private soirees. Luxury experience with white-glove service.",
+    //   image: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=1200&auto=format&fit=crop",
+    //   icon: <Crown size={32} />,
+    //   features: ["Gala Dinners", "VIP Parties", "Luxury Events", "Celebrity Gatherings"],
+    //   color: "from-amber-700 to-yellow-700",
+    //   bgColor: "from-amber-50 to-yellow-50",
+    //   delay: 0.5
+    // }
   ];
 
   const whyChooseUs = [
