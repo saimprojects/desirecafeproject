@@ -174,8 +174,14 @@ function Services() {
             <span className="block text-amber-300">Services</span>
           </h1>
           <p className={`text-amber-100 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 transition-all duration-700 delay-200 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Elegant catering experiences designed for corporate events, weddings, 
-            private gatherings, exhibitions, and VIP occasions.
+            Dear Ladies and Gentlemen,
+It gives me great pleasure to welcome you to Desire's Specialty Catering,
+Desire's Specialty Catering based In Abu Dhabi is your perfect professional catering & events in the Abu Dhabi. For our Customers, this means Top quality in the ingredients used, craftmanship in the preparation, personal service, and perfect organizational processes.
+Desire's Specialty Catering Focuses on you and your wishes!
+To the Point:
+We have the appropriate know-how to realize your ideas perfectly
+I hope you enjoy discovering our First-class products, which we prepare for you with love and creativity.
+
           </p>
           <div className={`mt-8 sm:mt-10 flex flex-wrap justify-center gap-3 sm:gap-4 transition-all duration-700 delay-300 ${visibleSections.pageLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <Link to="/contact" className="bg-white text-amber-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 text-sm sm:text-base">
