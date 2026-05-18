@@ -74,6 +74,79 @@ function Home() {
   return (
     <div className={`transition-all duration-1000 ${visibleSections.pageLoaded ? 'opacity-100' : 'opacity-0'}`}>
       
+
+
+      {/* ── INTRODUCTION SECTION ── */}
+      <section id="introduction" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-50 rounded-full blur-3xl opacity-60 translate-x-1/3 translate-y-1/3"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left — image collage */}
+            <div className={`relative transition-all duration-700 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
+              <div className="absolute -inset-4 bg-gradient-to-br from-amber-200 to-orange-200 rounded-[40px] blur-2xl opacity-30"></div>
+              <img
+                src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095742/WhatsApp_Image_2026-05-18_at_2.10.04_PM_1_w2aqt1.jpg"
+                alt="Desires Cafe Story"
+                className="relative rounded-[30px] sm:rounded-[40px] shadow-2xl w-full h-[300px] sm:h-[420px] object-cover"
+              />
+              {/* Small floating quote card */}
+              <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-amber-800 text-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs hover:scale-105 transition-transform duration-300">
+                {/* <Coffee size={20} className="mb-2 text-amber-200" /> */}
+                <p className="text-xs sm:text-sm font-medium leading-relaxed text-amber-100 italic">
+                  "Where Desires Are Brewed."
+                </p>
+              </div>
+            </div>
+
+            {/* Right — story text */}
+            <div className={`space-y-6 transition-all duration-700 delay-200 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
+              <div className="inline-flex items-center gap-2 bg-amber-100 px-4 sm:px-5 py-2 rounded-full hover:scale-105 transition">
+                <Sparkles size={16} className="text-amber-700" />
+                <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">OUR STORY</span>
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 leading-tight">
+                Introduction
+              </h2>
+
+              {/* Decorative divider */}
+              {/* <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-gradient-to-r from-amber-300 to-transparent"></div>
+                <Coffee size={18} className="text-amber-500" />
+                <div className="h-px flex-1 bg-gradient-to-l from-amber-300 to-transparent"></div>
+              </div> */}
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                A journey of fulfillment in a world of unfulfilled coffee cravings — that is when Desire's journey began. 
+                Home brewing brought true contentment, igniting a flame within.
+              </p>
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                <span className="font-semibold text-amber-800">Desires Specialty Café</span> emerged as a sanctuary 
+                where desires find fulfillment. Meticulously crafted sips carry the essence of deep satisfaction. 
+              </p>
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                Step into our romantic haven. <span className="font-semibold text-amber-800 italic">Welcome to Desire's Café.</span>
+              </p>
+
+              <div className="pt-2">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 bg-amber-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-amber-900 transition-all hover:shadow-xl hover:scale-105 text-sm sm:text-base"
+                >
+                  Discover More
+                  <ChevronRight size={16} className="group-hover:translate-x-1 transition" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Hero Section */}
       <section id="hero" className="min-h-screen bg-gradient-to-br from-[#fef8f0] via-[#fff5e6] to-[#fff0e0] relative overflow-hidden">
         <div className="absolute top-20 right-20 w-96 h-96 bg-amber-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -162,79 +235,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* ── INTRODUCTION SECTION ── */}
-      <section id="introduction" className="py-20 sm:py-28 bg-white relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-50 rounded-full blur-3xl opacity-60 translate-x-1/3 translate-y-1/3"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
-            {/* Left — image collage */}
-            <div className={`relative transition-all duration-700 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
-              <div className="absolute -inset-4 bg-gradient-to-br from-amber-200 to-orange-200 rounded-[40px] blur-2xl opacity-30"></div>
-              <img
-                src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095742/WhatsApp_Image_2026-05-18_at_2.10.04_PM_1_w2aqt1.jpg"
-                alt="Desires Cafe Story"
-                className="relative rounded-[30px] sm:rounded-[40px] shadow-2xl w-full h-[300px] sm:h-[420px] object-cover"
-              />
-              {/* Small floating quote card */}
-              <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-amber-800 text-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs hover:scale-105 transition-transform duration-300">
-                {/* <Coffee size={20} className="mb-2 text-amber-200" /> */}
-                <p className="text-xs sm:text-sm font-medium leading-relaxed text-amber-100 italic">
-                  "Where Desires Are Brewed."
-                </p>
-              </div>
-            </div>
-
-            {/* Right — story text */}
-            <div className={`space-y-6 transition-all duration-700 delay-200 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
-              <div className="inline-flex items-center gap-2 bg-amber-100 px-4 sm:px-5 py-2 rounded-full hover:scale-105 transition">
-                <Sparkles size={16} className="text-amber-700" />
-                <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">OUR STORY</span>
-              </div>
-
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 leading-tight">
-                Introduction
-              </h2>
-
-              {/* Decorative divider */}
-              {/* <div className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-gradient-to-r from-amber-300 to-transparent"></div>
-                <Coffee size={18} className="text-amber-500" />
-                <div className="h-px flex-1 bg-gradient-to-l from-amber-300 to-transparent"></div>
-              </div> */}
-
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                A journey of fulfillment in a world of unfulfilled coffee cravings — that is when Desire's journey began. 
-                Home brewing brought true contentment, igniting a flame within.
-              </p>
-
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                <span className="font-semibold text-amber-800">Desires Specialty Café</span> emerged as a sanctuary 
-                where desires find fulfillment. Meticulously crafted sips carry the essence of deep satisfaction. 
-              </p>
-
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                Step into our romantic haven. <span className="font-semibold text-amber-800 italic">Welcome to Desire's Café.</span>
-              </p>
-
-              <div className="pt-2">
-                <Link
-                  to="/contact"
-                  className="group inline-flex items-center gap-2 bg-amber-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-amber-900 transition-all hover:shadow-xl hover:scale-105 text-sm sm:text-base"
-                >
-                  Discover More
-                  <ChevronRight size={16} className="group-hover:translate-x-1 transition" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── SERVICES SECTION ── */}
       <section id="services" className="py-16 sm:py-24 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
