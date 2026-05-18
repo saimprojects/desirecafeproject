@@ -184,7 +184,7 @@ function Home() {
               <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-amber-800 text-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs hover:scale-105 transition-transform duration-300">
                 <Coffee size={20} className="mb-2 text-amber-200" />
                 <p className="text-xs sm:text-sm font-medium leading-relaxed text-amber-100 italic">
-                  "Where every desire finds its perfect cup."
+                  "Where Desires Are Brewed."
                 </p>
               </div>
             </div>
