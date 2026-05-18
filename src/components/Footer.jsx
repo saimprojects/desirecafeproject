@@ -32,7 +32,6 @@ function Footer() {
     { name: "Home", path: "/" },
     { name: "Menu", path: "/menu" },
     { name: "Services", path: "/services" },
-    // { name: "Packages", path: "/packages" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -79,7 +78,7 @@ function Footer() {
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 pb-8 sm:pb-12 border-b border-amber-700/50">
           
-          {/* Brand Section - White Logo for visibility on dark bg */}
+          {/* Brand Section - Logo */}
           <div className="group text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start mb-4 sm:mb-6">
               <div className="bg-white rounded-2xl p-3 inline-block group-hover:scale-105 transition-transform duration-500 shadow-lg">
@@ -178,13 +177,31 @@ function Footer() {
                   WhatsApp Available
                 </span>
               </li>
-              <li className="flex items-center justify-center sm:justify-start gap-3 group">
-                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover:scale-110 transition" />
-                <span className="text-amber-200/70 text-sm sm:text-base">Mon - Thursday  6am - 7pm </span>
-                <span className="text-amber-200/70 text-sm sm:text-base">Friday 6am - 12pm </span>
-                <span className="text-amber-200/70 text-sm sm:text-base"> Saturday sunday closed </span>
-              </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Opening Hours Section - Properly Formatted */}
+        <div className="py-6 sm:py-8 border-b border-amber-700/50">
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-amber-400" />
+              <h3 className="font-serif text-xl font-bold text-amber-300">Opening Hours</h3>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-4 sm:gap-8 text-center">
+              <div className="bg-amber-800/30 rounded-xl p-3">
+                <p className="font-semibold text-amber-300">Monday - Thursday</p>
+                <p className="text-white text-lg">6:00 AM - 7:00 PM</p>
+              </div>
+              <div className="bg-amber-800/30 rounded-xl p-3">
+                <p className="font-semibold text-amber-300">Friday</p>
+                <p className="text-white text-lg">6:00 AM - 12:00 PM</p>
+              </div>
+              <div className="bg-amber-800/30 rounded-xl p-3">
+                <p className="font-semibold text-red-400">Saturday - Sunday</p>
+                <p className="text-white text-lg">Closed</p>
+              </div>
+            </div>
           </div>
         </div>
 

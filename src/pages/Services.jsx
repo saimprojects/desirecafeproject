@@ -87,7 +87,7 @@ function Services() {
     {
       title: "Wedding Catering",
       desc: "Luxury wedding setups crafted with elegance, premium presentation, and unforgettable flavors. Make your special day truly magical.",
-      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.08_PM_rb99i3.jpg",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779095873/WhatsApp_Image_2026-05-18_at_2.15.07_PM_r4lt2s.jpg",
       icon: <Heart size={32} />,
       features: ["Wedding Receptions", "Engagement Parties", "Bridal Showers", "Sangeet Nights"],
       color: "from-rose-600 to-pink-600",
@@ -97,7 +97,7 @@ function Services() {
     {
       title: "Coffee Catering",
       desc: "Premium coffee stations with stylish setups for exhibitions and VIP gatherings. Barista-style service with specialty blends.",
-      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779095873/WhatsApp_Image_2026-05-18_at_2.15.07_PM_r4lt2s.jpg",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.08_PM_rb99i3.jpg",
       icon: <Coffee size={32} />,
       features: ["Coffee Stations", "Barista Service", "Specialty Blends", "Mobile Setup"],
       color: "from-amber-600 to-orange-600",
