@@ -298,7 +298,7 @@ function Home() {
         <div className="absolute -bottom-6 -left-4 sm:-bottom-8 sm:-left-8 bg-white/95 backdrop-blur p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 max-w-[200px] sm:max-w-none">
           <div className="flex items-center gap-2 mb-1">
             <Star size={14} className="sm:w-5 sm:h-5 fill-yellow-500 text-yellow-500 animate-pulse" />
-            <span className="font-bold text-sm sm:text-base">5.0 ★ (150+ reviews)</span>
+            <span className="font-bold text-sm sm:text-base">4.7 ★ (150+ reviews)</span>
           </div>
           <p className="text-gray-600 text-xs sm:text-sm">"Best catering in Abu Dhabi!"</p>
         </div>
