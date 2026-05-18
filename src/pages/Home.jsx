@@ -163,9 +163,9 @@ function Home() {
               </div>
               
               <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-amber-900 leading-[1.1]">
-                Creating Special
+                Desires Catering
                 <span className="block text-amber-600 mt-2 relative inline-block">
-                  Moments
+                  Services
                   <svg className="absolute -bottom-2 left-0 w-full h-2 sm:h-3 text-amber-300" viewBox="0 0 200 10">
                     <path d="M0 5 Q 50 10, 100 5 T 200 5" stroke="currentColor" fill="none" strokeWidth="3"/>
                   </svg>
