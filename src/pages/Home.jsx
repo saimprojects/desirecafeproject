@@ -173,8 +173,13 @@ function Home() {
               </h1>
               
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-xl">
-                Experience luxury catering in Abu Dhabi. From intimate gatherings to grand celebrations, 
-                we craft unforgettable experiences with exquisite flavors.
+                Dear Ladies and Gentlemen,
+It gives me great pleasure to welcome you to Desire's Specialty Catering,
+Desire's Specialty Catering based In Abu Dhabi is your perfect professional catering & events in the Abu Dhabi. For our Customers, this means Top quality in the ingredients used, craftmanship in the preparation, personal service, and perfect organizational processes.
+Desire's Specialty Catering Focuses on you and your wishes!
+To the Point:
+We have the appropriate know-how to realize your ideas perfectly
+I hope you enjoy discovering our First-class products, which we prepare for you with love and creativity.
               </p>
               
               <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
