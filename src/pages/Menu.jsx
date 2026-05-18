@@ -197,7 +197,7 @@ function Menu() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-3 sm:px-4 py-1 rounded-full mb-2 sm:mb-3">
             <Coffee className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="text-xs tracking-wide">SINCE 2010</span>
+            <span className="text-xs tracking-wide">SINCE 2023</span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
             Desires Café Menu
