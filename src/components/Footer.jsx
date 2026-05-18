@@ -49,7 +49,7 @@ function Footer() {
     email: "Desires.cafe@outlook.com",
     phone: "+971 50 262 5729",
     whatsapp: "+971502625729",
-    address: "5 Al Mansourah 2 St - Khalifa City - SE41 - Abu Dhabi - United Arab Emirates"
+    address: "Baniyas East - Abu Dhabi - United Arab Emirates"
   };
 
   // Logo URL
@@ -180,7 +180,9 @@ function Footer() {
               </li>
               <li className="flex items-center justify-center sm:justify-start gap-3 group">
                 <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover:scale-110 transition" />
-                <span className="text-amber-200/70 text-sm sm:text-base">Mon - Sun : 8AM - 11PM</span>
+                <span className="text-amber-200/70 text-sm sm:text-base">Mon - Thursday  6am - 7pm </span>
+                <span className="text-amber-200/70 text-sm sm:text-base">Friday 6am - 12pm </span>
+                <span className="text-amber-200/70 text-sm sm:text-base"> Saturday sunday closed </span>
               </li>
             </ul>
           </div>
