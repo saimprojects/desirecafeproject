@@ -77,7 +77,7 @@ function Services() {
     {
       title: "Corporate Catering",
       desc: "Professional catering experiences for meetings, conferences, and business events. Boost productivity with premium coffee and refreshments.",
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.09_PM_zeenug.jpg",
       icon: <Users size={32} />,
       features: ["Business Meetings", "Conferences", "Office Parties", "Corporate Events"],
       color: "from-blue-600 to-indigo-600",
@@ -87,7 +87,7 @@ function Services() {
     {
       title: "Wedding Catering",
       desc: "Luxury wedding setups crafted with elegance, premium presentation, and unforgettable flavors. Make your special day truly magical.",
-      image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1200&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.08_PM_rb99i3.jpg",
       icon: <Heart size={32} />,
       features: ["Wedding Receptions", "Engagement Parties", "Bridal Showers", "Sangeet Nights"],
       color: "from-rose-600 to-pink-600",
@@ -117,7 +117,7 @@ function Services() {
     {
       title: "Exhibition Catering",
       desc: "Professional catering for exhibitions and trade shows. Keep your guests refreshed while you focus on your business.",
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779100652/WhatsApp_Image_2026-05-18_at_3.32.09_PM_1_jsgvbx.jpg",
       icon: <Award size={32} />,
       features: ["Trade Shows", "Exhibitions", "Product Launches", "Business Expos"],
       color: "from-emerald-600 to-teal-600",
