@@ -97,7 +97,7 @@ function Services() {
     {
       title: "Coffee Catering",
       desc: "Premium coffee stations with stylish setups for exhibitions and VIP gatherings. Barista-style service with specialty blends.",
-      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/dxommxt6d/image/upload/v1779095873/WhatsApp_Image_2026-05-18_at_2.15.07_PM_r4lt2s.jpg",
       icon: <Coffee size={32} />,
       features: ["Coffee Stations", "Barista Service", "Specialty Blends", "Mobile Setup"],
       color: "from-amber-600 to-orange-600",
@@ -285,7 +285,7 @@ function Services() {
             <div className={`relative transition-all duration-700 delay-200 ${visibleSections.features ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
               <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 to-orange-400 rounded-3xl blur-2xl opacity-30"></div>
               <img
-                src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1200&auto=format&fit=crop"
+                src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095737/WhatsApp_Image_2026-05-18_at_2.10.03_PM_qbzheo.jpg"
                 alt="Luxury Catering Setup"
                 className="relative rounded-2xl sm:rounded-3xl shadow-2xl w-full h-[300px] sm:h-[400px] object-cover"
               />

@@ -18,7 +18,6 @@ import { FaTiktok } from "react-icons/fa";
 function Contact() {
   const [visibleSections, setVisibleSections] = useState({});
   
-  // WhatsApp Form State
   const [whatsappForm, setWhatsappForm] = useState({
     name: "",
     email: "",
@@ -60,7 +59,6 @@ function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  // Handle WhatsApp Submit
   const handleWhatsAppSubmit = (e) => {
     e.preventDefault();
     setWhatsappStatus({ sending: true, sent: false });
@@ -101,15 +99,33 @@ function Contact() {
   const contactInfo = {
     email: "Desires.cafe@outlook.com",
     phone: "+971 50 262 5729",
-    whatsapp: "+971502625729",
-    address: "Saadiyat Island, Abu Dhabi, UAE",
+    whatsapp: "971502625729",
+    address: "5 Al Mansourah 2 St - Khalifa City - SE41 - Abu Dhabi - United Arab Emirates",
     hours: "Mon - Sun : 8:00 AM - 11:00 PM"
+  };
+
+  // Action handlers
+  const handleWhatsAppClick = () => {
+    const message = encodeURIComponent("Hello! I'm interested in Desire's Catering services. Can you please provide more information?");
+    window.open(`https://wa.me/${contactInfo.whatsapp}?text=${message}`, '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.location.href = `tel:+971502625729`;
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${contactInfo.email}`;
+  };
+
+  const handleMapClick = () => {
+    window.open(`https://maps.google.com/?q=${encodeURIComponent(contactInfo.address)}`, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-white">
       
-      {/* Hero Section - Slim/Compact */}
+      {/* Hero Section - Slim */}
       <section id="hero" className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-8 sm:py-10 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -276,43 +292,60 @@ function Contact() {
           </div>
         </div>
 
-        {/* Contact Info Cards */}
+        {/* Contact Info Cards - All Clickable & Working */}
         <div id="info" className={`mt-16 sm:mt-20 transition-all duration-700 delay-400 ${visibleSections.info ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group">
+            
+            {/* WhatsApp Card */}
+            <div 
+              onClick={handleWhatsAppClick}
+              className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group cursor-pointer"
+            >
               <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500 group-hover:scale-110 transition-all duration-300">
                 <MessageCircle size={24} className="text-green-600 group-hover:text-white transition" />
               </div>
               <h3 className="font-bold text-gray-800 mb-2">WhatsApp Us</h3>
-              <p className="text-gray-600 text-sm">{contactInfo.whatsapp}</p>
-              <p className="text-green-600 text-xs mt-2">Quick Response</p>
+              <p className="text-gray-600 text-sm">+{contactInfo.whatsapp}</p>
+              <p className="text-green-600 text-xs mt-2 font-medium">Tap to Chat →</p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group">
+            {/* Call Card */}
+            <div 
+              onClick={handleCallClick}
+              className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group cursor-pointer"
+            >
               <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-500 group-hover:scale-110 transition-all duration-300">
                 <Phone size={24} className="text-amber-600 group-hover:text-white transition" />
               </div>
               <h3 className="font-bold text-gray-800 mb-2">Call Us</h3>
               <p className="text-gray-600 text-sm">{contactInfo.phone}</p>
-              <p className="text-amber-600 text-xs mt-2">8AM - 11PM</p>
+              <p className="text-amber-600 text-xs mt-2 font-medium">Tap to Call →</p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group">
+            {/* Email Card */}
+            <div 
+              onClick={handleEmailClick}
+              className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group cursor-pointer"
+            >
               <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-500 group-hover:scale-110 transition-all duration-300">
                 <Mail size={24} className="text-amber-600 group-hover:text-white transition" />
               </div>
               <h3 className="font-bold text-gray-800 mb-2">Email Us</h3>
               <p className="text-gray-600 text-sm break-all">{contactInfo.email}</p>
-              <p className="text-amber-600 text-xs mt-2">24/7 Support</p>
+              <p className="text-amber-600 text-xs mt-2 font-medium">Tap to Email →</p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group">
+            {/* Location Card - Opens Google Maps */}
+            <div 
+              onClick={handleMapClick}
+              className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 group cursor-pointer"
+            >
               <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-500 group-hover:scale-110 transition-all duration-300">
                 <MapPin size={24} className="text-amber-600 group-hover:text-white transition" />
               </div>
               <h3 className="font-bold text-gray-800 mb-2">Location</h3>
               <p className="text-gray-600 text-sm">{contactInfo.address}</p>
-              <p className="text-amber-600 text-xs mt-2">Abu Dhabi</p>
+              <p className="text-amber-600 text-xs mt-2 font-medium">Open in Maps →</p>
             </div>
           </div>
         </div>
@@ -330,7 +363,7 @@ function Contact() {
           <p className="text-gray-500 mb-4 text-sm">Follow us on social media</p>
           <div className="flex justify-center gap-4">
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/desires.ad/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300"

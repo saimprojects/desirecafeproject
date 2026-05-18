@@ -1,6 +1,5 @@
 // src/pages/Menu.jsx
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { 
   Coffee, 
   CupSoda, 
@@ -9,21 +8,15 @@ import {
   Milk, 
   Sparkles,
   Star,
-  Heart,
   TrendingUp,
   Clock,
-  ChevronRight,
   Search,
-  ShoppingBag,
-  MessageCircle
 } from "lucide-react";
 
 function Menu() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleItems, setVisibleItems] = useState({});
-  const [showToast, setShowToast] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,31 +33,6 @@ function Menu() {
     document.querySelectorAll('.menu-item').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  // WhatsApp Order Function
-  const handleWhatsAppOrder = (itemName, itemPrice) => {
-    const phoneNumber = "971502625729";
-    const message = encodeURIComponent(
-      `Hello! I would like to order:\n\n` +
-      `🍽️ Item: ${itemName}\n` +
-      `💰 Price: AED ${itemPrice}\n\n` +
-      `Please let me know about:\n` +
-      `- Quantity\n` +
-      `- Delivery/Pickup Time\n` +
-      `- Special Instructions\n\n` +
-      `Thank you!`
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
-  // Show toast notification
-  const showOrderToast = (itemName) => {
-    setSelectedItem(itemName);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2000);
-  };
 
   const menuData = {
     coffee: {
@@ -189,9 +157,7 @@ function Menu() {
   };
 
   const getFilteredItems = () => {
-    if (activeCategory === "all") {
-      return getAllItems();
-    }
+    if (activeCategory === "all") return getAllItems();
     return menuData[activeCategory]?.items || [];
   };
 
@@ -201,32 +167,23 @@ function Menu() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-white py-8 sm:py-12">
-      {/* Toast Notification */}
-      {showToast && (
-        <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 animate-bounce">
-          <div className="bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-2xl flex items-center gap-2 text-sm sm:text-base">
-            <MessageCircle size={18} className="sm:w-5 sm:h-5" />
-            Opening WhatsApp for {selectedItem}...
-          </div>
-        </div>
-      )}
 
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-12 sm:py-20 mb-12 sm:mb-16 overflow-hidden">
+      <div className="relative bg-gradient-to-r from-amber-900 to-amber-800 text-white py-8 sm:py-10 mb-12 sm:mb-16 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
-            <Coffee className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="text-xs sm:text-sm tracking-wide">SINCE 2010</span>
+          <div className="inline-flex items-center gap-2 bg-amber-700/50 backdrop-blur px-3 sm:px-4 py-1 rounded-full mb-2 sm:mb-3">
+            <Coffee className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="text-xs tracking-wide">SINCE 2010</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4">
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
             Desire's Café Menu
           </h1>
-          <p className="text-amber-100 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
+          <p className="text-amber-100 text-sm sm:text-base max-w-xl mx-auto px-4">
             Crafted with passion, served with love. Discover our signature beverages 
             made from the finest ingredients.
           </p>
-          <div className="mt-6 sm:mt-8 inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3 sm:px-5 py-1.5 sm:py-2 rounded-full">
+          <div className="mt-4 inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3 sm:px-4 py-1 sm:py-1.5 rounded-full">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
             <span className="text-xs sm:text-sm">All Prices Inclusive VAT</span>
           </div>
@@ -249,20 +206,6 @@ function Menu() {
           </div>
         </div>
 
-        {/* WhatsApp Order Button - Floating */}
-        <div className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40">
-          <button
-            onClick={() => {
-              const message = encodeURIComponent("Hello! I want to place an order from Desire's Café menu. Can you help me?");
-              window.open(`https://wa.me/971502625729?text=${message}`, '_blank');
-            }}
-            className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 sm:p-4 shadow-2xl hover:scale-110 transition-all duration-300 flex items-center gap-2 group"
-          >
-            <MessageCircle size={24} className="sm:w-6 sm:h-6" />
-            <span className="hidden sm:inline text-sm font-semibold group-hover:inline">Order on WhatsApp</span>
-          </button>
-        </div>
-
         {/* Category Tabs */}
         <div className="overflow-x-auto pb-4 mb-8 sm:mb-12 -mx-4 px-4">
           <div className="flex gap-2 sm:gap-3 min-w-max">
@@ -277,7 +220,7 @@ function Menu() {
                 }`}
               >
                 {cat.icon}
-                <span className="hidden xs:inline">{cat.name}</span>
+                <span>{cat.name}</span>
               </button>
             ))}
           </div>
@@ -311,44 +254,31 @@ function Menu() {
                   <div
                     key={idx}
                     id={`menu-item-${category}-${idx}`}
-                    className={`menu-item bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer group ${
+                    className={`menu-item bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group ${
                       visibleItems[`menu-item-${category}-${idx}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                     }`}
                     style={{ transitionDelay: `${idx * 0.05}s` }}
                   >
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-3">
+                    <div className="flex justify-between items-start gap-3">
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 group-hover:text-amber-800 transition">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-amber-800 transition">
                             {item.name}
                           </h3>
                           {item.popular && (
-                            <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
+                            <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                               <Star size={10} className="fill-amber-500" />
                               Popular
                             </span>
                           )}
                         </div>
-                        <p className="text-gray-500 text-xs sm:text-sm">{item.description}</p>
+                        <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-xl sm:text-2xl font-bold text-amber-800">
+                      <div className="text-right shrink-0">
+                        <div className="text-lg sm:text-xl font-bold text-amber-800">
                           AED {item.price}
                         </div>
                       </div>
-                    </div>
-                    <div className="mt-3 sm:mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                      <Heart size={14} className="text-gray-300 hover:text-red-500 transition cursor-pointer" />
-                      <button 
-                        onClick={() => {
-                          showOrderToast(item.name);
-                          handleWhatsAppOrder(item.name, item.price);
-                        }}
-                        className="bg-green-500 hover:bg-green-600 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-1.5 sm:py-2 rounded-full flex items-center gap-1 transition-all hover:gap-2"
-                      >
-                        <ShoppingBag size={12} className="sm:w-4 sm:h-4" />
-                        Order Now
-                      </button>
                     </div>
                   </div>
                 ))}
@@ -360,43 +290,31 @@ function Menu() {
             {filteredItems.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group"
+                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-3">
+                <div className="flex justify-between items-start gap-3">
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 group-hover:text-amber-800 transition">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-amber-800 transition">
                         {item.name}
                       </h3>
                       {item.popular && (
-                        <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
+                        <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                           <Star size={10} className="fill-amber-500" />
                           Popular
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-500 text-xs sm:text-sm">{item.description}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
+                    <p className="text-[10px] sm:text-xs text-gray-300 mt-1 capitalize">
+                      {item.category === "nonCoffee" ? "Non-Coffee" : 
+                       item.category === "milkAlt" ? "Milk Alternative" :
+                       item.category}
+                    </p>
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold text-amber-800">
+                  <div className="text-lg sm:text-xl font-bold text-amber-800 shrink-0">
                     AED {item.price}
                   </div>
-                </div>
-                <div className="mt-3 sm:mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                  <div className="text-[10px] sm:text-xs text-gray-400 capitalize">
-                    {item.category === "nonCoffee" ? "Non-Coffee" : 
-                     item.category === "milkAlt" ? "Milk Alternative" :
-                     item.category}
-                  </div>
-                  <button 
-                    onClick={() => {
-                      showOrderToast(item.name);
-                      handleWhatsAppOrder(item.name, item.price);
-                    }}
-                    className="bg-green-500 hover:bg-green-600 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-1.5 sm:py-2 rounded-full flex items-center gap-1 transition-all hover:gap-2"
-                  >
-                    <ShoppingBag size={12} className="sm:w-4 sm:h-4" />
-                    Order Now
-                  </button>
                 </div>
               </div>
             ))}
@@ -412,13 +330,9 @@ function Menu() {
 
         {/* Footer Note */}
         <div className="mt-12 sm:mt-16 text-center py-6 sm:py-8 border-t border-amber-200">
-          <p className="text-gray-500 text-xs sm:text-sm flex items-center justify-center gap-2 flex-wrap">
+          <p className="text-gray-400 text-xs sm:text-sm flex items-center justify-center gap-2">
             <TrendingUp size={14} className="sm:w-4 sm:h-4" />
             All Prices Inclusive VAT | Free WiFi Available
-          </p>
-          <p className="text-gray-400 text-xs mt-2 flex items-center justify-center gap-2">
-            <MessageCircle size={12} />
-            Order via WhatsApp - Quick & Easy!
           </p>
         </div>
       </div>

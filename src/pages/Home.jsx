@@ -1,16 +1,14 @@
 // src/pages/Home.jsx
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Coffee, Sparkles, Trophy, Users, Calendar, Star, ChevronRight, Phone, Award, Heart, Gift, Zap, Crown, Check, UtensilsCrossed } from "lucide-react";
+import { Coffee, Sparkles, Trophy, Users, Calendar, Star, ChevronRight, Phone, Award, Heart, Gift, Zap, Crown, Check, UtensilsCrossed, Leaf, IceCream, Truck, Briefcase } from "lucide-react";
 
 function Home() {
   const [visibleSections, setVisibleSections] = useState({});
 
   useEffect(() => {
-    // Page load animation
     setVisibleSections(prev => ({ ...prev, pageLoaded: true }));
 
-    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,8 +23,7 @@ function Home() {
       { threshold: 0.2, triggerOnce: true }
     );
 
-    // Observe all sections
-    const sections = ["hero", "services", "pricing", "packages", "whyus", "cta"];
+    const sections = ["hero", "introduction", "services", "pricing", "packages", "whyus", "cta"];
     sections.forEach((section) => {
       const element = document.getElementById(section);
       if (element) observer.observe(element);
@@ -35,20 +32,43 @@ function Home() {
     return () => observer.disconnect();
   }, []);
 
-  const packages = [
-    { id: 1, name: "Silver", cups: 100, type: "Hot/Cold Coffee + Filter Coffee", price: 2000, transport: 1000, total: 3000, popular: false },
-    { id: 2, name: "Gold", cups: 100, type: "Hot/Cold Coffee + Filter Coffee + 3 Cold Beverages", price: 2500, transport: 1000, total: 3500, popular: false },
-    { id: 3, name: "Platinum", cups: 200, type: "Hot/Cold Coffee + Filter Coffee", price: 4000, transport: 1000, total: 5000, popular: false },
-    { id: 4, name: "Diamond", cups: 200, type: "Hot/Cold Coffee + Filter Coffee + 3 Cold Beverages", price: 5000, transport: 1000, total: 6000, popular: true },
-    { id: 5, name: "Royal", cups: 300, type: "Hot/Cold Coffee + Filter Coffee", price: 6000, transport: 1000, total: 7000, popular: false },
-    { id: 6, name: "Imperial", cups: 300, type: "Hot/Cold Coffee + Filter Coffee + 3 Cold Beverages", price: 7500, transport: 1000, total: 8500, popular: false },
-  ];
-
   const services = [
-    { title: "Business & Office Catering", desc: "Meeting customer appointments? We've got your back! Healthy beverages for productive breaks.", icon: <Users size={28} />, delay: 0 },
-    { title: "Event Catering", desc: "From coffee to homemade cakes and pastries - the ultimate taste for your guests.", icon: <Calendar size={28} />, delay: 0.1 },
-    { title: "Private Customer Catering", desc: "Weddings, birthdays - we turn your ideas into perfection with personalized celebrations.", icon: <Heart size={28} />, delay: 0.2 },
-    { title: "Exhibition Catering", desc: "Behind-the-scenes excellence while you focus on your customers and visitors.", icon: <Award size={28} />, delay: 0.3 }
+    {
+      title: "Specialty Coffee",
+      desc: "Hot and cold beverages crafted from premium beans sourced from diverse origins, ensuring a unique experience in every cup.",
+      icon: <Coffee size={28} />,
+      delay: 0
+    },
+    {
+      title: "Premium Matcha & Teas",
+      desc: "A curated selection of premium-grade matcha and teas in various delightful flavors for the discerning palate.",
+      icon: <Leaf size={28} />,
+      delay: 0.1
+    },
+    {
+      title: "Pastries & Desserts",
+      desc: "Indulge in our freshly made pastries and decadent desserts, all prepared with the finest ingredients.",
+      icon: <UtensilsCrossed size={28} />,
+      delay: 0.2
+    },
+    {
+      title: "Natural Ice Creams",
+      desc: "Over 10 flavors of creamy, natural ice creams — including unique options like matcha and Arabic coffee ice cream.",
+      icon: <IceCream size={28} />,
+      delay: 0.3
+    },
+    {
+      title: "Delivery Services",
+      desc: "Enjoy your favorite Desires products wherever you are — home, office, or any location — through top delivery apps.",
+      icon: <Truck size={28} />,
+      delay: 0.4
+    },
+    {
+      title: "Catering Services",
+      desc: "Elevate your events with premium catering solutions. Corporate meetings, weddings, or private gatherings — we make every occasion unforgettable.",
+      icon: <Briefcase size={28} />,
+      delay: 0.5
+    },
   ];
 
   return (
@@ -62,7 +82,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 min-h-screen flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
             
-            {/* Left Side - Animated */}
+            {/* Left Side */}
             <div className={`space-y-6 sm:space-y-8 transition-all duration-700 delay-100 ${visibleSections.hero ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
               <div className="inline-flex items-center gap-3 bg-amber-100 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform">
                 <Sparkles size={16} className="sm:w-[18px] sm:h-[18px] text-amber-700 animate-pulse" />
@@ -114,12 +134,12 @@ function Home() {
               </div>
             </div>
             
-            {/* Right Side - Animated */}
+            {/* Right Side */}
             <div className={`relative transition-all duration-700 delay-300 ${visibleSections.hero ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
               <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 to-orange-400 rounded-[40px] sm:rounded-[50px] blur-2xl opacity-40 animate-pulse"></div>
               <div className="relative group">
                 <img 
-                  src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop" 
+                  src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095731/WhatsApp_Image_2026-05-18_at_2.10.03_PM_1_jz2uo8.jpg" 
                   alt="Luxury Coffee"
                   className="relative rounded-[40px] sm:rounded-[50px] shadow-2xl w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -143,47 +163,134 @@ function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-16 sm:py-24 bg-white">
+      {/* ── INTRODUCTION SECTION ── */}
+      <section id="introduction" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-50 rounded-full blur-3xl opacity-60 translate-x-1/3 translate-y-1/3"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left — image collage */}
+            <div className={`relative transition-all duration-700 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
+              <div className="absolute -inset-4 bg-gradient-to-br from-amber-200 to-orange-200 rounded-[40px] blur-2xl opacity-30"></div>
+              <img
+                src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095742/WhatsApp_Image_2026-05-18_at_2.10.04_PM_1_w2aqt1.jpg"
+                alt="Desires Cafe Story"
+                className="relative rounded-[30px] sm:rounded-[40px] shadow-2xl w-full h-[300px] sm:h-[420px] object-cover"
+              />
+              {/* Small floating quote card */}
+              <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-amber-800 text-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs hover:scale-105 transition-transform duration-300">
+                <Coffee size={20} className="mb-2 text-amber-200" />
+                <p className="text-xs sm:text-sm font-medium leading-relaxed text-amber-100 italic">
+                  "Where every desire finds its perfect cup."
+                </p>
+              </div>
+            </div>
+
+            {/* Right — story text */}
+            <div className={`space-y-6 transition-all duration-700 delay-200 ${visibleSections.introduction ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
+              <div className="inline-flex items-center gap-2 bg-amber-100 px-4 sm:px-5 py-2 rounded-full hover:scale-105 transition">
+                <Sparkles size={16} className="text-amber-700" />
+                <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">OUR STORY</span>
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 leading-tight">
+                Introduction
+              </h2>
+
+              {/* Decorative divider */}
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-gradient-to-r from-amber-300 to-transparent"></div>
+                <Coffee size={18} className="text-amber-500" />
+                <div className="h-px flex-1 bg-gradient-to-l from-amber-300 to-transparent"></div>
+              </div>
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                A journey of fulfillment in a world of unfulfilled coffee cravings — that is when Desire's journey began. 
+                Home brewing brought true contentment, igniting a flame within.
+              </p>
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                <span className="font-semibold text-amber-800">Desires Specialty Café</span> emerged as a sanctuary 
+                where desires find fulfillment. Meticulously crafted sips carry the essence of deep satisfaction. 
+              </p>
+
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                Step into our romantic haven. <span className="font-semibold text-amber-800 italic">Welcome to Desire's Café.</span>
+              </p>
+
+              <div className="pt-2">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 bg-amber-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-amber-900 transition-all hover:shadow-xl hover:scale-105 text-sm sm:text-base"
+                >
+                  Discover More
+                  <ChevronRight size={16} className="group-hover:translate-x-1 transition" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SERVICES SECTION ── */}
+      <section id="services" className="py-16 sm:py-24 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-12 sm:mb-16 transition-all duration-700 ${visibleSections.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <div className="inline-flex items-center gap-2 bg-amber-100 px-4 py-2 rounded-full mb-4 hover:scale-105 transition">
               <Coffee size={16} className="sm:w-[18px] sm:h-[18px] text-amber-800" />
-              <span className="text-amber-800 font-semibold text-xs sm:text-sm">WE OFFER YOU</span>
+              <span className="text-amber-800 font-semibold text-xs sm:text-sm">WHAT WE OFFER</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 mb-3 sm:mb-4">Premium Services</h2>
-            <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">Tailored solutions for every occasion</p>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 mb-3 sm:mb-4">Our Products & Services</h2>
+            <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
+              High-quality offerings designed to satisfy every craving and elevate every occasion
+            </p>
           </div>
           
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((s, i) => (
               <div 
                 key={i} 
-                className={`group bg-gradient-to-br from-amber-50 to-orange-50 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 cursor-pointer hover:shadow-2xl hover:-translate-y-2 ${
+                className={`group bg-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 cursor-pointer hover:shadow-2xl hover:-translate-y-2 ${
                   visibleSections.services ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
                 }`}
                 style={{ transitionDelay: `${s.delay}s` }}
               >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl flex items-center justify-center text-amber-800 mb-4 sm:mb-6 group-hover:scale-110 transition-all duration-300 group-hover:rotate-6">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-800 mb-4 sm:mb-6 group-hover:scale-110 group-hover:bg-amber-800 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
                   {s.icon}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-amber-900 mb-2 sm:mb-3 group-hover:text-amber-700 transition">{s.title}</h3>
-                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{s.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-amber-900 mb-2 sm:mb-3 group-hover:text-amber-700 transition">{s.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Extra note */}
+          <div className={`mt-10 sm:mt-14 text-center transition-all duration-700 delay-500 ${visibleSections.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-gray-500 text-sm sm:text-base italic">
+              ✨ We are proud to have served both large and small companies, delivering excellence every step of the way.
+            </p>
+            <div className="mt-6">
+              <Link to="/services" className="group inline-flex items-center gap-2 border-2 border-amber-800 text-amber-800 px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-amber-800 hover:text-white transition-all hover:scale-105 text-sm sm:text-base">
+                View All Services
+                <ChevronRight size={16} className="group-hover:translate-x-1 transition" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Price Guide */}
-      <section id="pricing" className="py-12 sm:py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+      <section id="pricing" className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-10 sm:mb-12 transition-all duration-700 ${visibleSections.pricing ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="font-serif text-3xl sm:text-4xl text-amber-900 mb-2 sm:mb-3">Price Guide</h2>
             <p className="text-gray-600 text-sm sm:text-base">Per cup pricing for reference</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-            <div className={`bg-white rounded-2xl p-6 sm:p-8 text-center shadow-xl w-64 sm:w-72 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+            <div className={`bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 sm:p-8 text-center shadow-xl w-64 sm:w-72 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
               visibleSections.pricing ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
             }`} style={{ transitionDelay: "0.2s" }}>
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -193,7 +300,7 @@ function Home() {
               <div className="text-gray-700 mt-2 text-sm sm:text-base">Hot/Cold Coffee</div>
               <div className="text-gray-500 text-xs sm:text-sm">+ Filter Coffee</div>
             </div>
-            <div className={`bg-white rounded-2xl p-6 sm:p-8 text-center shadow-xl w-64 sm:w-72 relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+            <div className={`bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 sm:p-8 text-center shadow-xl w-64 sm:w-72 relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
               visibleSections.pricing ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
             }`} style={{ transitionDelay: "0.4s" }}>
               <div className="absolute top-0 right-0 bg-amber-800 text-white px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-sm rounded-bl-2xl animate-pulse">POPULAR</div>
@@ -208,61 +315,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Packages Section
-      <section id="packages" className="py-16 sm:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-12 sm:mb-16 transition-all duration-700 ${visibleSections.packages ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="inline-flex items-center gap-2 bg-amber-100 px-4 py-2 rounded-full mb-4">
-              <Trophy size={16} className="sm:w-[18px] sm:h-[18px] text-amber-800" />
-              <span className="text-amber-800 font-semibold text-xs sm:text-sm">CATERING PACKAGES</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-amber-900 mb-3 sm:mb-4">Choose Your Package</h2>
-            <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">Complete setup with professional service</p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {packages.map((pkg, idx) => (
-              <div 
-                key={pkg.id}
-                className={`relative bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 ${
-                  visibleSections.packages ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-                }`}
-                style={{ transitionDelay: `${idx * 0.1}s` }}
-              >
-                {pkg.popular && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-3 sm:px-5 py-1 sm:py-2 rounded-bl-2xl sm:rounded-bl-3xl text-[10px] sm:text-sm font-bold z-10 animate-pulse">
-                    ⭐ MOST POPULAR
-                  </div>
-                )}
-                <div className="p-6 sm:p-8">
-                  <div className="text-3xl sm:text-5xl mb-3 sm:mb-4 animate-bounce" style={{ animationDuration: "2s" }}>
-                    {pkg.id <= 2 ? "☕" : pkg.id <= 4 ? "💎" : "👑"}
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-amber-900 mb-1">{pkg.name}</h3>
-                  <div className="text-2xl sm:text-3xl font-bold text-amber-800 mb-3 sm:mb-4">{pkg.cups} Cups</div>
-                  <p className="text-gray-600 text-xs sm:text-sm mb-5 sm:mb-6 pb-4 border-b border-gray-200">{pkg.type}</p>
-                  
-                  <div className="space-y-2 mb-5 sm:mb-6">
-                    <div className="flex justify-between text-sm sm:text-base hover:pl-2 transition-all"><span className="text-gray-600">Package:</span><span className="font-bold">{pkg.price} AED</span></div>
-                    <div className="flex justify-between text-sm sm:text-base hover:pl-2 transition-all"><span className="text-gray-600">Transport:</span><span className="font-bold">{pkg.transport} AED</span></div>
-                    <div className="flex justify-between pt-2 border-t border-gray-200"><span className="font-semibold text-sm sm:text-base">Total:</span><span className="text-xl sm:text-2xl font-bold text-amber-800">{pkg.total} AED</span></div>
-                  </div>
-                  
-                  <Link to="/contact" className="block w-full text-center bg-amber-800 text-white py-2.5 sm:py-3 rounded-xl font-semibold hover:bg-amber-900 transition-all hover:scale-105 text-sm sm:text-base">
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className={`text-center mt-8 sm:mt-12 text-gray-500 text-xs sm:text-sm space-y-1 transition-all duration-700 delay-500 ${visibleSections.packages ? 'opacity-100' : 'opacity-0'}`}>
-            <p>✨ For 300+ cups, contact us for special pricing</p>
-            <p>🍰 Croissants & Desserts - priced by quantity</p>
-          </div>
-        </div>
-      </section> */}
-
       {/* Why Choose Us */}
       <section id="whyus" className="py-16 sm:py-24 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -270,7 +322,7 @@ function Home() {
             <div className={`transition-all duration-700 ${visibleSections.whyus ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
               <div className="relative group">
                 <img 
-                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=500&fit=crop" 
+                  src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779095744/WhatsApp_Image_2026-05-18_at_2.10.04_PM_a6k2a0.jpg" 
                   alt="Premium Setup"
                   className="rounded-2xl sm:rounded-3xl shadow-2xl w-full h-[280px] sm:h-[350px] lg:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -326,14 +378,8 @@ function Home() {
 
       <style jsx>{`
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out forwards;
