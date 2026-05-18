@@ -372,7 +372,7 @@ function Services() {
               <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 bg-white p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl max-w-[220px] sm:max-w-xs">
                 <div className="flex items-center gap-2 mb-2">
                   <Star size={16} className="sm:w-5 sm:h-5 fill-yellow-500 text-yellow-500" />
-                  <span className="font-bold text-sm sm:text-base">5.0 ★ Rated</span>
+                  <span className="font-bold text-sm sm:text-base">4.7 ★ Rated</span>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm">"Best catering service in Abu Dhabi!"</p>
               </div>
