@@ -24,7 +24,7 @@ function Navbar() {
     { name: "Home", path: "/" },
     { name: "Menu", path: "/menu" },
     { name: "Services", path: "/services" },
-    // { name: "Packages", path: "/packages" },
+    { name: "Packages", path: "/packages" },
     { name: "Contact", path: "/contact" },
   ];
 
