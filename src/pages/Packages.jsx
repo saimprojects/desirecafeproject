@@ -192,11 +192,6 @@ function Packages() {
           </p>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-5 h-9 border-2 border-white/40 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-white rounded-full animate-ping" />
-          </div>
-        </div>
       </section>
 
       {/* ── Pricing Note ── */}
