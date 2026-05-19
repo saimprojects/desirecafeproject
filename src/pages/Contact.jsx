@@ -100,7 +100,7 @@ function Contact() {
     email: "Desires.cafe@outlook.com",
     phone: "+971 50 262 5729",
     whatsapp: "971502625729",
-    address: "5 Al Mansourah 2 St - Khalifa City - SE41 - Abu Dhabi - United Arab Emirates",
+    address: "Baniyas East - Abu Dhabi - United Arab Emirates",
     hours: "Mon - Sun : 8:00 AM - 11:00 PM"
   };
 
