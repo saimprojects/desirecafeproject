@@ -271,7 +271,7 @@ function Home() {
         
         <div className="flex gap-8 sm:gap-12 pt-6 sm:pt-8 border-t border-amber-200">
           <div className="group cursor-pointer">
-            <div className="text-2xl sm:text-3xl font-bold text-amber-800 group-hover:scale-110 transition-transform">500+</div>
+            <div className="text-2xl sm:text-3xl font-bold text-amber-800 group-hover:scale-110 transition-transform">50+</div>
             <div className="text-gray-600 text-xs sm:text-sm">Events</div>
           </div>
           <div className="group cursor-pointer">
