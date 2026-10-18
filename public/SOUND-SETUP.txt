@@ -1,0 +1,5 @@
+Place your notification audio here as track1.mp3.
+Order sound is always on in /admin, including after refresh.
+If the browser blocks autoplay, click Activate sound once. Use Test sound to check playback.
+The sound loops until all unseen orders have been viewed.
+Keep the admin tab open and the device awake. No Redis is needed.

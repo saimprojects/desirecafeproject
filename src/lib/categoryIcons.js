@@ -1,0 +1,36 @@
+import { Hamburger, Coffee, CupSoda, GlassWater, Milk, Droplets, IceCream, Cake, CakeSlice, Cookie, Croissant, Sandwich, Pizza, Salad, Soup, Beef, Fish, Egg, EggFried, Apple, Banana, Cherry, Citrus, Grape, Carrot, Wheat, Leaf, Flame, Utensils, Candy } from "lucide-react";
+
+export const categoryIcons = [
+  { key: "coffee", Icon: Coffee, label: "Coffee" },
+  { key: "cup-soda", Icon: CupSoda, label: "Cold drinks" },
+  { key: "glass-water", Icon: GlassWater, label: "Water" },
+  { key: "milk", Icon: Milk, label: "Milk" },
+  { key: "droplets", Icon: Droplets, label: "Filter coffee" },
+  { key: "ice-cream", Icon: IceCream, label: "Ice cream" },
+  { key: "cake", Icon: Cake, label: "Cake" },
+  { key: "cake-slice", Icon: CakeSlice, label: "Cake slice" },
+  { key: "cookie", Icon: Cookie, label: "Cookies" },
+  { key: "croissant", Icon: Croissant, label: "Bakery" },
+  { key: "sandwich", Icon: Sandwich, label: "Sandwiches" },
+  { key: "pizza", Icon: Pizza, label: "Pizza" },
+  { key: "burger", Icon: Hamburger, label: "Burgers" },
+  { key: "salad", Icon: Salad, label: "Salads" },
+  { key: "soup", Icon: Soup, label: "Soup" },
+  { key: "beef", Icon: Beef, label: "Meat" },
+  { key: "fish", Icon: Fish, label: "Seafood" },
+  { key: "egg", Icon: Egg, label: "Eggs" },
+  { key: "egg-fried", Icon: EggFried, label: "Breakfast" },
+  { key: "apple", Icon: Apple, label: "Fruit" },
+  { key: "banana", Icon: Banana, label: "Banana" },
+  { key: "cherry", Icon: Cherry, label: "Cherries" },
+  { key: "citrus", Icon: Citrus, label: "Citrus" },
+  { key: "grape", Icon: Grape, label: "Grapes" },
+  { key: "carrot", Icon: Carrot, label: "Vegetables" },
+  { key: "wheat", Icon: Wheat, label: "Bread" },
+  { key: "leaf", Icon: Leaf, label: "Tea / vegan" },
+  { key: "flame", Icon: Flame, label: "Grill" },
+  { key: "utensils", Icon: Utensils, label: "Meals" },
+  { key: "candy", Icon: Candy, label: "Sweets" },
+];
+const originals = { coffee: "coffee", nonCoffee: "cup-soda", smoothies: "glass-water", frappe: "ice-cream", iceCream: "ice-cream", specialtyTea: "cup-soda", filterCoffee: "droplets", milkAlt: "milk" };
+export function categoryIconKey(category) { return category.icon || originals[category.key] || (category.is_addon ? "milk" : "coffee"); }

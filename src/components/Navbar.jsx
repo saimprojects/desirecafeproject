@@ -29,25 +29,25 @@ function Navbar() {
   ];
 
   // Logo URL
-  const logoUrl = "https://res.cloudinary.com/dxommxt6d/image/upload/v1779088277/Untitled_design_pvenmx.png";
+  const logoUrl =
+    "https://res.cloudinary.com/dxommxt6d/image/upload/v1779088277/Untitled_design_pvenmx.png";
 
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled 
-            ? "bg-white/95 backdrop-blur-md shadow-xl py-2" 
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-xl py-2"
             : "bg-gradient-to-r from-amber-50/95 via-orange-50/95 to-amber-50/95 backdrop-blur-sm py-3"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            
             {/* Logo - Bigger Size */}
             <Link to="/" className="group flex-shrink-0">
-              <img 
-                src={logoUrl} 
-                alt="Desire's Cafe Logo" 
+              <img
+                src={logoUrl}
+                alt="Desire's Cafe Logo"
                 className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </Link>
@@ -97,8 +97,8 @@ function Navbar() {
         {/* Mobile Menu */}
         <div
           className={`md:hidden fixed top-[88px] left-0 right-0 bg-white/95 backdrop-blur-xl shadow-2xl transition-all duration-500 ease-in-out z-40 ${
-            menuOpen 
-              ? "opacity-100 translate-y-0 visible" 
+            menuOpen
+              ? "opacity-100 translate-y-0 visible"
               : "opacity-0 -translate-y-full invisible"
           }`}
         >

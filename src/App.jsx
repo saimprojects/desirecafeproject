@@ -10,6 +10,11 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Menu from "./pages/Menu";
 import Contact from "./pages/Contact";
+import Cart from "./pages/Cart";
+import Receipt from "./pages/Receipt";
+import Admin from "./pages/Admin";
+import { ShopProvider } from "./components/ShopContext";
+import "./commerce.css";
 
 // Scroll to Top Hook
 function ScrollToTop() {
@@ -22,9 +27,9 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function Storefront() {
   return (
-    <BrowserRouter>
+    <ShopProvider>
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-white">
         <Navbar />
         <ScrollToTop />
@@ -36,10 +41,23 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order/:token" element={<Receipt />} />
           </Routes>
         </main>
         <Footer />
       </div>
+    </ShopProvider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin/*" element={<Admin />} />
+        <Route path="*" element={<Storefront />} />
+      </Routes>
     </BrowserRouter>
   );
 }
