@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest run",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "configure:backend": "node scripts/configure-backend.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
