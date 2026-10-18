@@ -12,7 +12,7 @@ if (url.protocol !== 'https:' || url.username || url.password || url.search || u
 const file = new URL('../vercel.json', import.meta.url);
 const config = JSON.parse(await readFile(file, 'utf8'));
 config.rewrites = [
-  { source: '/api/:path*', destination: `${url.origin}/api/:path*` },
+  { source: '/api/:path(.*)', destination: `${url.origin}/api/:path*` },
   ...(config.rewrites || []).filter(rule => !rule.source.startsWith('/api')),
 ];
 await writeFile(file, JSON.stringify(config, null, 2) + '\n');
