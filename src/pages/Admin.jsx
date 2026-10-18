@@ -1,3 +1,4 @@
+import { productOptions } from "../lib/productOptions";
 import { PasswordField } from "../components/PasswordField";
 import { ChangePassword } from "../components/ChangePassword";
 import { ThermalPrint } from "../components/ThermalPrint";
@@ -786,12 +787,13 @@ function MenuEditor() {
                   </label>
                   <div className="product-options-editor">
                     <h3>Product options</h3>
-                    <p className="muted">For example: Hot coffee, Cold coffee. Customer chooses one per cart entry. All options use the product price.</p>
-                    {(editing.options || []).map((option, index) => <div className="option-edit-row" key={index}>
-                      <input aria-label={`Option ${index + 1}`} maxLength={100} required value={option} onChange={e => field("options", editing.options.map((value, i) => i === index ? e.target.value : value))} />
+                    <p className="muted">For example: Hot coffee, Cold coffee. Customer chooses one per cart entry. Optional price is the full unit price in AED. Leave blank to use the product price.</p>
+                    {productOptions(editing).map((option, index) => <div className="option-edit-row" key={index}>
+                      <input aria-label={`Option ${index + 1}`} maxLength={100} required value={option.name} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, name:e.target.value} : value))} />
+                      <input type="number" min="0" max="999999.99" step="0.01" aria-label={`Option ${index + 1} price (AED)`} placeholder={`Base: ${editing.price || "0.00"} AED`} value={option.price ?? ""} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, price:e.target.value || null} : value))} />
                       <button type="button" className="text-button" aria-label={`Remove option ${index + 1}`} onClick={() => field("options", editing.options.filter((_, i) => i !== index))}>Remove</button>
                     </div>)}
-                    <button type="button" className="outline-button" disabled={(editing.options || []).length >= 30} onClick={() => field("options", [...(editing.options || []), ""])}>Add option</button>
+                    <button type="button" className="outline-button" disabled={(editing.options || []).length >= 30} onClick={() => field("options", [...productOptions(editing), {name:"", price:null}])}>Add option</button>
                   </div>
                   {[
                     ["available", "Available for ordering"],

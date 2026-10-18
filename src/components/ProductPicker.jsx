@@ -1,3 +1,4 @@
+import { productOptions, optionPrice } from "../lib/productOptions";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Minus, Plus } from "lucide-react";
@@ -8,8 +9,8 @@ export function ProductPicker({ item, shop, close }) {
   const dialog = useRef(null);
   const [option, setOption] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const options = item.options || [];
-  const ready = item.available && shop.data?.settings?.is_open && !shop.error && (!options.length || options.includes(option));
+  const options = productOptions(item);
+  const ready = item.available && shop.data?.settings?.is_open && !shop.error && (!options.length || options.some(o => o.name === option));
   useEffect(() => {
     const node = dialog.current;
     node.showModal();
@@ -22,11 +23,11 @@ export function ProductPicker({ item, shop, close }) {
       <button type="button" className="picker-close" aria-label="Close product options" onClick={close}><X /></button>
       <span className="picker-eyebrow">MAKE IT YOURS</span>
       <h2 id={`product-title-${item.id}`}>{item.name}</h2>
-      <p>{item.description}</p><strong>{aed(item.price)} each</strong>
+      <p>{item.description}</p><strong>{aed(optionPrice(item, option))} each</strong>
       <form onSubmit={e => {e.preventDefault(); if(ready && shop.add(item, null, quantity, option) !== false) close();}}>
         {options.length > 0 && <fieldset><legend>Choose an option</legend><div className="picker-options">
-          {options.map(value => <label key={value} className={option === value ? "selected" : ""}>
-            <input type="radio" name="product-option" value={value} checked={option === value} required onChange={() => setOption(value)} /><span>{value}</span>
+          {options.map(value => <label key={value.name} className={option === value.name ? "selected" : ""}>
+            <input type="radio" aria-label={value.name} name="product-option" value={value.name} checked={option === value.name} required onChange={() => setOption(value.name)} /><span>{value.name}</span><small>{aed(optionPrice(item, value.name))}</small>
           </label>)}
         </div></fieldset>}
         <div className="picker-quantity"><span>Quantity</span><div>
@@ -34,7 +35,7 @@ export function ProductPicker({ item, shop, close }) {
           <output aria-label="Selected quantity">{quantity}</output>
           <button type="button" aria-label="Increase quantity" disabled={quantity >= 50} onClick={() => setQuantity(q => q + 1)}><Plus size={18}/></button>
         </div></div>
-        <button className="picker-add" type="submit" disabled={!ready}>Add {quantity} to cart · {aed(Number(item.price) * quantity)}</button>
+        <button className="picker-add" type="submit" disabled={!ready}>Add {quantity} to cart · {aed(optionPrice(item, option) * quantity)}</button>
         {!item.available && <p role="status">This item is currently unavailable.</p>}
       </form>
     </div>

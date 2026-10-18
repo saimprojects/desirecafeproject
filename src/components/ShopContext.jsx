@@ -1,3 +1,4 @@
+import { productOptions, optionPrice } from "../lib/productOptions";
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { usePolling } from "../lib/usePolling";
@@ -46,10 +47,10 @@ export function ShopProvider({ children }) {
       ...line,
       item,
       addon,
-      price: Number(item?.price || 0) + Number(addon?.price || 0),
+      price: optionPrice(item, line.option) + Number(addon?.price || 0),
       valid: Boolean(
         item?.available &&
-        ((item.options?.length || 0) ? item.options.includes(line.option || "") : !line.option) &&
+        ((item.options?.length || 0) ? productOptions(item).some(o => o.name === (line.option || "")) : !line.option) &&
         (!line.addon_id ||
           (addon?.available && addon.is_addon && item.allows_milk)),
       ),
@@ -62,7 +63,7 @@ export function ShopProvider({ children }) {
     }
     if (!existing && cart.length >= 50) { toast.error("Your cart is full. Please checkout first."); return false; }
     if (!item.available || !menu.data?.settings?.is_open || menu.error) return false;
-    if (item.options?.length ? !item.options.includes(option) : !!option) { toast.error("Please choose a current option."); return false; }
+    if (item.options?.length ? !productOptions(item).some(o => o.name === option) : !!option) { toast.error("Please choose a current option."); return false; }
     setCart(old => {
       const index = old.findIndex(x => x.item_id === item.id && x.addon_id === addonId && (x.option || "") === option);
       return index < 0 ? [...old, {item_id:item.id, addon_id:addonId, quantity, option}]
