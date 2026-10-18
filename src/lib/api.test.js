@@ -50,3 +50,16 @@ it("does not loop when an origin is rejected, or retry unrelated permission erro
   await expect(api("settings/", {})).rejects.toThrow("Not allowed");
   expect(fetcher).toHaveBeenCalledTimes(2);
 });
+
+it("rejects HTML returned by the SPA fallback even with HTTP 200", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ok:true,status:200,json:async()=>{throw new SyntaxError("HTML");}}));
+  const { api } = await import("./api");
+  await expect(api("menu/")).rejects.toThrow("/api proxy");
+});
+it("rejects missing menu settings and accepts the actual menu shape", async () => {
+  const fetcher=vi.fn().mockResolvedValueOnce(response(200,{error:"upstream"})).mockResolvedValueOnce(response(200,{categories:[],settings:{is_open:true}}));
+  vi.stubGlobal("fetch",fetcher);
+  const {api}=await import("./api");
+  await expect(api("menu/")).rejects.toThrow("backend connection");
+  await expect(api("menu/")).resolves.toEqual({categories:[],settings:{is_open:true}});
+});

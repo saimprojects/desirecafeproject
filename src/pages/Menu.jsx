@@ -22,7 +22,7 @@ function OrderControls({ item, shop }) {
         type="button"
         aria-label={`Add ${item.name} to cart`}
         disabled={
-          !item.available || !shop.data?.settings.is_open || !!shop.error
+          !item.available || !shop.data?.settings?.is_open || !!shop.error
         }
         onClick={() => shop.add(item, null)}
         className="inline-flex items-center gap-1.5 rounded-full bg-amber-800 px-4 py-2 text-xs font-semibold text-white shadow hover:bg-amber-900 disabled:opacity-50"
@@ -30,7 +30,7 @@ function OrderControls({ item, shop }) {
         <Plus size={14} />
         {!item.available
           ? "Sold out"
-          : !shop.data?.settings.is_open
+          : !shop.data?.settings?.is_open
             ? "Closed"
             : "Add to cart"}
       </button>
@@ -133,7 +133,7 @@ function Menu() {
             Loading menu…
           </p>
         )}
-        {shop.data && !shop.data.settings.is_open && (
+        {shop.data?.settings && !shop.data.settings.is_open && (
           <p className="mb-6 rounded-xl bg-amber-100 p-4 text-sm text-amber-900">
             Ordering is currently closed. You can still browse our menu.
           </p>

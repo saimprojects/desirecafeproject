@@ -1,3 +1,11 @@
+const connectionError = "Cannot load café data. Check the backend connection and /api proxy.";
+async function readJson(response) {
+  let result;
+  try { result = await response.json(); }
+  catch { throw new Error(connectionError); }
+  if (!result || typeof result !== "object" || Array.isArray(result)) throw new Error(connectionError);
+  return result;
+}
 let csrf = "";
 let pending;
 export async function session() {
@@ -8,9 +16,10 @@ export async function session() {
     })
       .then(async (r) => {
         if (!r.ok) throw new Error("Cannot connect to the cafÃ© server.");
-        return r.json();
+        return readJson(r);
       })
       .then((data) => {
+        if (typeof data.csrf !== "string" || !data.csrf) throw new Error(connectionError);
         csrf = data.csrf;
         return data;
       })
@@ -32,9 +41,7 @@ export async function api(action, data, signal, retryCsrf = true) {
         : { "Content-Type": "application/json", "X-CSRFToken": csrf },
     body: data === undefined ? undefined : JSON.stringify(data),
   });
-  const result = await response.json().catch(() => ({
-    error: "The server could not process this request. Please retry.",
-  }));
+  const result = await readJson(response);
   if (!response.ok) {
     if (response.status === 403) csrf = "";
     // CSRF middleware rejects before the view runs, so one token refresh is safe.
@@ -51,6 +58,11 @@ export async function api(action, data, signal, retryCsrf = true) {
     error.status = response.status;
     throw error;
   }
+  if (action.split("?")[0] === "menu/" && (
+    !Array.isArray(result.categories) ||
+    !result.categories.every(group => group && Array.isArray(group.items)) ||
+    typeof result.settings?.is_open !== "boolean"
+  )) throw new Error(connectionError);
   if (result.csrf) csrf = result.csrf;
   return result;
 }
