@@ -25,6 +25,7 @@ export function ReceiptContent({ order }) {
         <div className="receipt-line" key={i}>
           <span>
             {line.quantity} × {line.name}
+            {line.option && <small> · {line.option}</small>}
             {line.addon && <small> + {line.addon}</small>}
           </span>
           <strong>{aed(Number(line.unit_price) * line.quantity)}</strong>

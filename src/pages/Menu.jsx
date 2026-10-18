@@ -1,3 +1,4 @@
+import { ProductPicker } from "../components/ProductPicker";
 import { CategoryIcon } from "../components/CategoryIcon";
 // src/pages/Menu.jsx
 import { useState } from "react";
@@ -16,6 +17,8 @@ import {
 } from "lucide-react";
 
 function OrderControls({ item, shop }) {
+  const [opened, setOpened] = useState(false);
+  const added = (shop.cart || []).filter(line => line.item_id === item.id);
   return (
     <div className="mt-4 flex flex-wrap items-center justify-end gap-3 border-t border-amber-100 pt-4">
       <button
@@ -24,7 +27,7 @@ function OrderControls({ item, shop }) {
         disabled={
           !item.available || !shop.data?.settings?.is_open || !!shop.error
         }
-        onClick={() => shop.add(item, null)}
+        onClick={() => setOpened(true)}
         className="inline-flex items-center gap-1.5 rounded-full bg-amber-800 px-4 py-2 text-xs font-semibold text-white shadow hover:bg-amber-900 disabled:opacity-50"
       >
         <Plus size={14} />
@@ -34,6 +37,12 @@ function OrderControls({ item, shop }) {
             ? "Closed"
             : "Add to cart"}
       </button>
+      {added.length > 0 && <div className="product-cart-summary" aria-live="polite">
+        <strong>In your cart: {added.reduce((total,line) => total + line.quantity, 0)}</strong>
+        {added.map((line,index) => <span key={index}>{line.quantity} × {line.option || item.name}</span>)}
+        <Link to="/cart">Edit cart</Link>
+      </div>}
+      {opened && <ProductPicker item={item} shop={shop} close={() => setOpened(false)} />}
     </div>
   );
 }

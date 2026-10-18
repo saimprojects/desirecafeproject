@@ -43,6 +43,7 @@ export default function Cart() {
       items: shop.lines.map((x) => ({
         item_id: x.item_id,
         addon_id: x.addon_id,
+        option: x.option || "",
         quantity: x.quantity,
         expected_price: x.price.toFixed(2),
       })),
@@ -109,10 +110,11 @@ export default function Cart() {
               {shop.lines.map((line, index) => (
                 <div
                   className="cart-line"
-                  key={`${line.item_id}-${line.addon_id}`}
+                  key={`${line.item_id}-${line.addon_id}-${line.option || ""}`}
                 >
                   <div>
                     <h3>{line.item?.name || "Unavailable item"}</h3>
+                    {line.option && <small>{line.option}</small>}
                     {line.addon && <small>{line.addon.name}</small>}
                     <p>{aed(line.price)} each</p>
                     {!line.valid && (

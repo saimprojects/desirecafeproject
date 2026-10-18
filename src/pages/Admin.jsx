@@ -649,6 +649,7 @@ function MenuEditor() {
                 popular: false,
                 available: true,
                 allows_milk: false,
+                options: [],
               })
             }
           >
@@ -783,6 +784,15 @@ function MenuEditor() {
                       onChange={(e) => field("price", e.target.value)}
                     />
                   </label>
+                  <div className="product-options-editor">
+                    <h3>Product options</h3>
+                    <p className="muted">For example: Hot coffee, Cold coffee. Customer chooses one per cart entry. All options use the product price.</p>
+                    {(editing.options || []).map((option, index) => <div className="option-edit-row" key={index}>
+                      <input aria-label={`Option ${index + 1}`} maxLength={100} required value={option} onChange={e => field("options", editing.options.map((value, i) => i === index ? e.target.value : value))} />
+                      <button type="button" className="text-button" aria-label={`Remove option ${index + 1}`} onClick={() => field("options", editing.options.filter((_, i) => i !== index))}>Remove</button>
+                    </div>)}
+                    <button type="button" className="outline-button" disabled={(editing.options || []).length >= 30} onClick={() => field("options", [...(editing.options || []), ""])}>Add option</button>
+                  </div>
                   {[
                     ["available", "Available for ordering"],
                     ["popular", "House favourite"],

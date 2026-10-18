@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { afterEach, expect, it, vi } from "vitest";
+import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Menu from "./Menu";
@@ -7,8 +7,12 @@ import { useShop } from "../components/ShopContext";
 import original from "../../../backend/shop/menu_seed.json";
 
 vi.mock("../components/ShopContext", () => ({ useShop: vi.fn() }));
+beforeEach(() => {
+  HTMLDialogElement.prototype.showModal = function() { this.setAttribute("open", ""); };
+  HTMLDialogElement.prototype.close = function() { this.removeAttribute("open"); };
+});
 afterEach(cleanup);
-function mount() {
+function mount(options = [], cart = []) {
   let id = 0;
   const categories = original.map((group, index) => ({
     id: index + 1,
@@ -19,12 +23,14 @@ function mount() {
       ...item,
       id: ++id,
       available: true,
+      options,
       allows_milk: group.key === "coffee",
     })),
   }));
   const shop = {
     data: { categories, settings: { is_open: true } },
     count: 0,
+    cart,
     add: vi.fn(),
   };
   useShop.mockReturnValue(shop);
@@ -62,9 +68,10 @@ it("keeps category/search filtering and the floating checkout working in the ori
   });
   expect(screen.queryByRole("combobox")).toBeNull();
   fireEvent.click(screen.getByRole("button", { name: "Add Espresso to cart" }));
+  fireEvent.click(screen.getByRole("button", {name:/Add 1 to cart/}));
   expect(shop.add).toHaveBeenCalledWith(
     expect.objectContaining({ name: "Espresso" }),
-    null,
+    null, 1, "",
   );
   expect(
     screen
@@ -77,6 +84,20 @@ it("lets customers add every milk alternative directly to the cart", () => {
   const shop = mount();
   for (const name of ["Almond Milk", "Oat Milk", "Coconut Milk"]) {
     fireEvent.click(screen.getByRole("button", {name: `Add ${name} to cart`}));
-    expect(shop.add).toHaveBeenCalledWith(expect.objectContaining({name}), null);
+    fireEvent.click(screen.getByRole("button", {name:/Add 1 to cart/}));
+    expect(shop.add).toHaveBeenCalledWith(expect.objectContaining({name}), null, 1, "");
   }
+});
+
+it("requires a choice, accepts quantity, and shows existing cart choices on cards", () => {
+  const shop = mount(["Hot", "Cold"], [{item_id:1, quantity:2, option:"Hot"}]);
+  expect(screen.getByText("In your cart: 2")).toBeTruthy();
+  expect(screen.getByText("2 × Hot")).toBeTruthy();
+  fireEvent.click(screen.getByRole("button", {name:"Add Espresso to cart"}));
+  expect(screen.getByRole("button", {name:/Add 1 to cart/}).disabled).toBe(true);
+  fireEvent.click(screen.getByLabelText("Cold"));
+  fireEvent.click(screen.getByRole("button", {name:"Increase quantity"}));
+  fireEvent.click(screen.getByRole("button", {name:/Add 2 to cart/}));
+  expect(shop.add).toHaveBeenCalledWith(expect.objectContaining({name:"Espresso"}),null,2,"Cold");
+  expect(screen.queryByRole("dialog")).toBeNull();
 });

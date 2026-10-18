@@ -49,26 +49,27 @@ export function ShopProvider({ children }) {
       price: Number(item?.price || 0) + Number(addon?.price || 0),
       valid: Boolean(
         item?.available &&
+        ((item.options?.length || 0) ? item.options.includes(line.option || "") : !line.option) &&
         (!line.addon_id ||
           (addon?.available && addon.is_addon && item.allows_milk)),
       ),
     };
   });
-  function add(item, addonId) {
-    setCart((old) => {
-      const index = old.findIndex(
-        (x) => x.item_id === item.id && x.addon_id === addonId,
-      );
-      return index < 0
-        ? [...old, { item_id: item.id, addon_id: addonId, quantity: 1 }].slice(
-            0,
-            50,
-          )
-        : old.map((x, i) =>
-            i === index ? { ...x, quantity: Math.min(50, x.quantity + 1) } : x,
-          );
+  function add(item, addonId = null, quantity = 1, option = "") {
+    const existing = cart.find(x => x.item_id === item.id && x.addon_id === addonId && (x.option || "") === option);
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 50 || (existing?.quantity || 0) + quantity > 50) {
+      toast.error("Maximum 50 per option. Adjust the quantity in your cart."); return false;
+    }
+    if (!existing && cart.length >= 50) { toast.error("Your cart is full. Please checkout first."); return false; }
+    if (!item.available || !menu.data?.settings?.is_open || menu.error) return false;
+    if (item.options?.length ? !item.options.includes(option) : !!option) { toast.error("Please choose a current option."); return false; }
+    setCart(old => {
+      const index = old.findIndex(x => x.item_id === item.id && x.addon_id === addonId && (x.option || "") === option);
+      return index < 0 ? [...old, {item_id:item.id, addon_id:addonId, quantity, option}]
+        : old.map((x,i) => i === index ? {...x, quantity:Math.min(50,x.quantity+quantity)} : x);
     });
-    toast.success(`${item.name} added to cart`);
+    toast.success(`${quantity} × ${item.name}${option ? ` · ${option}` : ""} added to cart`);
+    return true;
   }
   function quantity(index, value) {
     setCart((old) =>
