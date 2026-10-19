@@ -223,6 +223,7 @@ function Menu() {
                     className="menu-item bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group"
                   >
                     <div className="flex justify-between items-start gap-3">
+                      {item.image ? <img src={item.image} alt={item.name} className="product-photo menu-photo" loading="lazy" /> : <span className="product-fallback">{menuData[item.category]?.icon}</span>}
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
                           <h3 className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-amber-800 transition">
@@ -259,6 +260,7 @@ function Menu() {
                 className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
               >
                 <div className="flex justify-between items-start gap-3">
+                      {item.image ? <img src={item.image} alt={item.name} className="product-photo menu-photo" loading="lazy" /> : <span className="product-fallback">{menuData[item.category]?.icon}</span>}
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <h3 className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-amber-800 transition">

@@ -1,4 +1,4 @@
-import { productOptions, optionPrice } from "../lib/productOptions";
+import { productOptions, optionPrice, validProductOption } from "../lib/productOptions";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Minus, Plus } from "lucide-react";
@@ -10,7 +10,7 @@ export function ProductPicker({ item, shop, close }) {
   const [option, setOption] = useState("");
   const [quantity, setQuantity] = useState(1);
   const options = productOptions(item);
-  const ready = item.available && shop.data?.settings?.is_open && !shop.error && (!options.length || options.some(o => o.name === option));
+  const ready = item.available && shop.data?.settings?.is_open && !shop.error && validProductOption(item, option);
   useEffect(() => {
     const node = dialog.current;
     node.showModal();
@@ -23,11 +23,13 @@ export function ProductPicker({ item, shop, close }) {
       <button type="button" className="picker-close" aria-label="Close product options" onClick={close}><X /></button>
       <span className="picker-eyebrow">MAKE IT YOURS</span>
       <h2 id={`product-title-${item.id}`}>{item.name}</h2>
+      {item.image && <img src={item.image} alt={item.name} className="product-photo picker-photo" />}
       <p>{item.description}</p><strong>{aed(optionPrice(item, option))} each</strong>
       <form onSubmit={e => {e.preventDefault(); if(ready && shop.add(item, null, quantity, option) !== false) close();}}>
-        {options.length > 0 && <fieldset><legend>Choose an option</legend><div className="picker-options">
+        {options.length > 0 && <fieldset><legend>Choose an option{item.options_required ? " (required)" : " (optional)"}</legend><div className="picker-options">
+          {!item.options_required && <label className={!option ? "selected" : ""}><input type="radio" name="product-option" checked={!option} onChange={() => setOption("")} /><span>No option</span><small>{aed(item.price)}</small></label>}
           {options.map(value => <label key={value.name} className={option === value.name ? "selected" : ""}>
-            <input type="radio" aria-label={value.name} name="product-option" value={value.name} checked={option === value.name} required onChange={() => setOption(value.name)} /><span>{value.name}</span><small>{aed(optionPrice(item, value.name))}</small>
+            <input type="radio" aria-label={value.name} name="product-option" value={value.name} checked={option === value.name} required={item.options_required} onChange={() => setOption(value.name)} /><span>{value.name}</span><small>{aed(optionPrice(item, value.name))}</small>
           </label>)}
         </div></fieldset>}
         <div className="picker-quantity"><span>Quantity</span><div>

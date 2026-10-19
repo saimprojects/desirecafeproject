@@ -137,6 +137,14 @@ function Home() {
             <div
               className={`space-y-6 transition-all duration-700 delay-200 ${visibleSections.introduction ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"}`}
             >
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Link
+                  to="/menu"
+                  className="inline-flex items-center gap-2 rounded-full bg-amber-800 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-amber-900"
+                >
+                  Order Online <ChevronRight size={18} />
+                </Link>
+              </div>
               <div className="inline-flex items-center gap-2 bg-amber-100 px-4 sm:px-5 py-2 rounded-full hover:scale-105 transition">
                 <Sparkles size={16} className="text-amber-700" />
                 <span className="text-amber-800 font-semibold text-xs sm:text-sm tracking-wide">
@@ -177,20 +185,7 @@ function Home() {
                 </span>
               </p>
 
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link
-                  to="/menu"
-                  className="inline-flex items-center gap-2 rounded-full bg-amber-800 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-amber-900"
-                >
-                  Order Online <ChevronRight size={18} />
-                </Link>
-                <Link
-                  to="/menu"
-                  className="inline-flex items-center gap-2 rounded-full border border-amber-800 px-6 py-3 font-semibold text-amber-800 transition hover:bg-amber-50"
-                >
-                  See Menu <Coffee size={18} />
-                </Link>
-              </div>
+
             </div>
           </div>
         </div>

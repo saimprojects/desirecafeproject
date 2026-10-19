@@ -46,7 +46,7 @@ function Footer() {
 
   // Contact Info
   const contactInfo = {
-    email: "Desires.cafe@outlook.com",
+    email: "management@desires.ae",
     phone: "+971 50 262 5729",
     whatsapp: "+971502625729",
     address: "Baniyas East - Abu Dhabi - United Arab Emirates"
@@ -257,7 +257,7 @@ function Footer() {
         {/* Bottom Bar */}
         <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-center">
           <p className="text-amber-300/50 text-xs sm:text-sm">
-            © 2025 Desire's Specialty Catering. All Rights Reserved.
+            © 2025 Desires Specialty Cafe LLC. All Rights Reserved.
           </p>
           <p className="text-amber-300/50 text-xs sm:text-sm flex items-center gap-2">
             <span>Premium Catering Services</span>

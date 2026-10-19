@@ -217,7 +217,7 @@ export default function Cart() {
                 </label>
               )}
               <label>
-                Full delivery address
+                Full Delivery Address (Office Number)
                 <textarea
                   name="address"
                   autoComplete="street-address"
@@ -227,7 +227,7 @@ export default function Cart() {
                   rows={3}
                   value={form.address}
                   onChange={change}
-                  placeholder="Building, apartment, street and area"
+                  placeholder="Building A, Second Floor, D2, Office No 23"
                 />
               </label>
               <label>

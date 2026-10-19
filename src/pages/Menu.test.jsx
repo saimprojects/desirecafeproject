@@ -12,7 +12,7 @@ beforeEach(() => {
   HTMLDialogElement.prototype.close = function() { this.removeAttribute("open"); };
 });
 afterEach(cleanup);
-function mount(options = [], cart = []) {
+function mount(options = [], cart = [], required = options.length > 0) {
   let id = 0;
   const categories = original.map((group, index) => ({
     id: index + 1,
@@ -24,6 +24,7 @@ function mount(options = [], cart = []) {
       id: ++id,
       available: true,
       options,
+      options_required: required,
       allows_milk: group.key === "coffee",
     })),
   }));
@@ -110,4 +111,15 @@ it("updates the popup total using the optional option price", () => {
   expect(screen.getByRole("button", {name:/Add 2 to cart/}).textContent).toContain("41.00");
   fireEvent.click(screen.getByLabelText("Hot"));
   expect(screen.getByRole("button", {name:/Add 2 to cart/}).textContent).toContain("29.50");
+});
+
+
+it("allows no selection for optional choices and can clear a selected choice", () => {
+  const shop = mount(["Hot", "Cold"], [], false);
+  fireEvent.click(screen.getByRole("button", {name:"Add Espresso to cart"}));
+  expect(screen.getByRole("button", {name:/Add 1 to cart/}).disabled).toBe(false);
+  fireEvent.click(screen.getByLabelText("Cold"));
+  fireEvent.click(screen.getByLabelText(/No option/));
+  fireEvent.click(screen.getByRole("button", {name:/Add 1 to cart/}));
+  expect(shop.add).toHaveBeenCalledWith(expect.objectContaining({name:"Espresso"}), null, 1, "");
 });

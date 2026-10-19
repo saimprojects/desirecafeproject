@@ -571,6 +571,31 @@ function OrderDetail({ id, close, acknowledge }) {
   );
 }
 
+async function resizeProductImage(file) {
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 10 * 1024 * 1024) {
+    throw new Error("Choose a JPG, PNG or WebP image up to 10 MB.");
+  }
+  const url = URL.createObjectURL(file);
+  try {
+    const image = new Image();
+    image.src = url;
+    await image.decode();
+    const scale = Math.min(1, 800 / Math.max(image.naturalWidth, image.naturalHeight));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+    canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+    const context = canvas.getContext("2d");
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    for (const quality of [0.85, 0.7, 0.5]) {
+      const result = canvas.toDataURL("image/jpeg", quality);
+      if (result.length <= 400000) return result;
+    }
+    throw new Error("Image is too detailed. Please choose a smaller photo.");
+  } finally { URL.revokeObjectURL(url); }
+}
+
 function MenuEditor() {
   const { data, error, reload } = usePolling("menu/");
   const [editing, setEditing] = useState(null),
@@ -580,9 +605,16 @@ function MenuEditor() {
   const groups = data?.categories || [];
   async function submit(e) {
     e.preventDefault();
+    if (editing?.options_required && !productOptions(editing).length) {
+      toast.error("Add at least one option or uncheck Option Compulsory.");
+      return;
+    }
     setBusy(true);
     try {
-      await api(editing ? "menu-item/" : "category/", editing || category);
+      await api(editing ? "menu-item/" : "category/", editing ? {
+        ...editing,
+        options: productOptions(editing).map(option => ({ ...option, name: option.name.trim() })),
+      } : category);
       toast.success("Menu updated");
       setEditing(null);
       setCategory(null);
@@ -651,6 +683,8 @@ function MenuEditor() {
                 available: true,
                 allows_milk: false,
                 options: [],
+                options_required: false,
+                image: "",
               })
             }
           >
@@ -703,7 +737,7 @@ function MenuEditor() {
                   onClick={() => setEditing({ ...item })}
                 >
                   <div className="menu-icon">
-                    <CategoryIcon category={g} size={22} />
+                    {item.image ? <img src={item.image} alt={item.name} className="product-photo admin-product-photo" /> : <CategoryIcon category={g} size={22} />}
                   </div>
                   <div>
                     <h3>{item.name}</h3>
@@ -785,9 +819,28 @@ function MenuEditor() {
                       onChange={(e) => field("price", e.target.value)}
                     />
                   </label>
+                  <label>
+                    Product image (optional)
+                    <input type="file" accept="image/jpeg,image/png,image/webp" onChange={async e => {
+                      const file = e.target.files?.[0];
+                      e.target.value = "";
+                      if (!file) return;
+                      setBusy(true);
+                      try {
+                        const image = await resizeProductImage(file);
+                        setEditing(current => current ? { ...current, image_data: image } : current);
+                      } catch (error) { toast.error(error.message); }
+                      finally { setBusy(false); }
+                    }} />
+                  </label>
+                  <p className="muted">Upload JPG, PNG or WebP (up to 10 MB). Images are resized automatically. Without a photo, the category icon is shown.</p>
+                  {(editing.image_data ?? editing.image) && <div className="product-image-preview">
+                    <img src={editing.image_data ?? editing.image} alt={`Preview of ${editing.name || "product"}`} className="product-photo" />
+                    <button type="button" className="text-button" onClick={() => field("image_data", "")}>Remove image</button>
+                  </div>}
                   <div className="product-options-editor">
                     <h3>Product options</h3>
-                    <p className="muted">For example: Hot coffee, Cold coffee. Customer chooses one per cart entry. Optional price is the full unit price in AED. Leave blank to use the product price.</p>
+                    <p className="muted">For example: Hot coffee, Cold coffee. Customer can choose one per cart entry. Check Option Compulsory to require a selection. Optional price is the full unit price in AED. Leave blank to use the product price.</p>
                     {productOptions(editing).map((option, index) => <div className="option-edit-row" key={index}>
                       <input aria-label={`Option ${index + 1}`} maxLength={100} required value={option.name} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, name:e.target.value} : value))} />
                       <input type="number" min="0" max="999999.99" step="0.01" aria-label={`Option ${index + 1} price (AED)`} placeholder={`Base: ${editing.price || "0.00"} AED`} value={option.price ?? ""} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, price:e.target.value || null} : value))} />
@@ -798,11 +851,12 @@ function MenuEditor() {
                   {[
                     ["available", "Available for ordering"],
                     ["popular", "House favourite"],
+                    ["options_required", "Option Compulsory"],
                   ].map(([key, label]) => (
                     <label className="check-label" key={key}>
                       <input
                         type="checkbox"
-                        checked={editing[key]}
+                        checked={!!editing[key]}
                         onChange={(e) => field(key, e.target.checked)}
                       />
                       {label}
@@ -1137,10 +1191,7 @@ function AdminShell({ user, onLogout }) {
     <div className="admin-app">
       <aside className="admin-sidebar no-print">
         <Link to="/admin" className="admin-brand">
-          <Coffee size={29} strokeWidth={1.4} />
-          <span>
-            desires<span>CAFÉ MANAGEMENT</span>
-          </span>
+          <img className="admin-logo" src="https://res.cloudinary.com/dxommxt6d/image/upload/v1779088277/Untitled_design_pvenmx.png" alt="Desires Café" />
         </Link>
         <span className="sidebar-label">WORKSPACE</span>
         <nav>
@@ -1160,8 +1211,7 @@ function AdminShell({ user, onLogout }) {
         <div className="sidebar-bottom">
           <div className="sidebar-note">
             <Coffee size={22} />
-            <h3>Good things brewing.</h3>
-            <p>A little care in every cup.</p>
+            <h3>Where Desires are Brewed</h3>
           </div>
           <Link to="/menu" target="_blank" rel="noreferrer">
             Visit storefront <ArrowUpRight size={16} />

@@ -2,7 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import { Check } from "lucide-react";
 import { usePolling } from "../lib/usePolling";
 import { ReceiptContent } from "../components/ReceiptContent";
-import { ThermalPrint } from "../components/ThermalPrint";
 export default function Receipt() {
   const { token } = useParams();
   const { data, error } = usePolling(
@@ -23,7 +22,6 @@ export default function Receipt() {
         <section className="surface printable">
           <ReceiptContent order={data} />
           <div className="button-row no-print">
-            <ThermalPrint order={data} />
             <Link className="text-button" to="/menu">
               Back to menu
             </Link>

@@ -67,7 +67,7 @@ function fill() {
   fireEvent.change(screen.getByLabelText("Phone number"), {
     target: { value: "+971500000000" },
   });
-  fireEvent.change(screen.getByLabelText("Full delivery address"), {
+  fireEvent.change(screen.getByLabelText("Full Delivery Address (Office Number)"), {
     target: { value: "Apartment 12, Test Street, Dubai" },
   });
 }

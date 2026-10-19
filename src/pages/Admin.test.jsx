@@ -231,3 +231,19 @@ it("sends order date filters to the API and resets them", async () => {
   expect(start.value).toBe("");
   expect(screen.getByLabelText("Orders to date").value).toBe("");
 });
+it("edits product images and compulsory options while preserving structured option prices", async () => {
+  const previous = api.getMockImplementation();
+  api.mockImplementation(async (path, body) => path === "menu/" ? {
+    categories: [{id:1,key:"coffee",name:"Coffee",items:[{id:1,category:1,name:"Espresso",description:"",price:"14.75",available:true,popular:false,options_required:false,options:[{name:"Cold",price:"20.50"}],image:"/api/menu-image/?id=1"}]}],
+    settings: {is_open:true},
+  } : previous(path, body));
+  mount("/admin/menu");
+  fireEvent.click(await screen.findByRole("button", {name:/Espresso/}));
+  expect(screen.getByAltText("Preview of Espresso").getAttribute("src")).toBe("/api/menu-image/?id=1");
+  fireEvent.click(screen.getByLabelText("Option Compulsory"));
+  fireEvent.click(screen.getByRole("button", {name:"Remove image"}));
+  fireEvent.submit(screen.getByRole("heading", {name:"Edit item"}).closest("form"));
+  await waitFor(() => expect(api).toHaveBeenCalledWith("menu-item/", expect.objectContaining({
+    options_required:true, image_data:"", options:[{name:"Cold",price:"20.50"}],
+  })));
+});
