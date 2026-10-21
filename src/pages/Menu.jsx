@@ -1,3 +1,4 @@
+import { optionLabel } from "../lib/productOptions";
 import { ProductPicker } from "../components/ProductPicker";
 import { CategoryIcon } from "../components/CategoryIcon";
 // src/pages/Menu.jsx
@@ -39,7 +40,7 @@ function OrderControls({ item, shop }) {
       </button>
       {added.length > 0 && <div className="product-cart-summary" aria-live="polite">
         <strong>In your cart: {added.reduce((total,line) => total + line.quantity, 0)}</strong>
-        {added.map((line,index) => <span key={index}>{line.quantity} × {line.option || item.name}</span>)}
+        {added.map((line,index) => <span key={index}>{line.quantity} × {optionLabel(line.option, line.selections) || item.name}</span>)}
         <Link to="/cart">Edit cart</Link>
       </div>}
       {opened && <ProductPicker item={item} shop={shop} close={() => setOpened(false)} />}

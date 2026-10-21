@@ -1,3 +1,4 @@
+import { ProductOptionsEditor } from "../components/ProductOptionsEditor";
 import { productOptions } from "../lib/productOptions";
 import { PasswordField } from "../components/PasswordField";
 import { ChangePassword } from "../components/ChangePassword";
@@ -605,7 +606,7 @@ function MenuEditor() {
   const groups = data?.categories || [];
   async function submit(e) {
     e.preventDefault();
-    if (editing?.options_required && !productOptions(editing).length) {
+    if (editing?.option_mode !== "multi" && editing?.options_required && !productOptions(editing).length) {
       toast.error("Add at least one option or uncheck Option Compulsory.");
       return;
     }
@@ -613,7 +614,8 @@ function MenuEditor() {
     try {
       await api(editing ? "menu-item/" : "category/", editing ? {
         ...editing,
-        options: productOptions(editing).map(option => ({ ...option, name: option.name.trim() })),
+        options: editing.option_mode === "multi" ? undefined : productOptions(editing).map(option => ({ ...option, name: option.name.trim() })),
+        option_groups: editing.option_mode === "multi" ? editing.option_groups || [] : undefined,
       } : category);
       toast.success("Menu updated");
       setEditing(null);
@@ -838,20 +840,10 @@ function MenuEditor() {
                     <img src={editing.image_data ?? editing.image} alt={`Preview of ${editing.name || "product"}`} className="product-photo" />
                     <button type="button" className="text-button" onClick={() => field("image_data", "")}>Remove image</button>
                   </div>}
-                  <div className="product-options-editor">
-                    <h3>Product options</h3>
-                    <p className="muted">For example: Hot coffee, Cold coffee. Customer can choose one per cart entry. Check Option Compulsory to require a selection. Optional price is the full unit price in AED. Leave blank to use the product price.</p>
-                    {productOptions(editing).map((option, index) => <div className="option-edit-row" key={index}>
-                      <input aria-label={`Option ${index + 1}`} maxLength={100} required value={option.name} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, name:e.target.value} : value))} />
-                      <input type="number" min="0" max="999999.99" step="0.01" aria-label={`Option ${index + 1} price (AED)`} placeholder={`Base: ${editing.price || "0.00"} AED`} value={option.price ?? ""} onChange={e => field("options", productOptions(editing).map((value, i) => i === index ? {...value, price:e.target.value || null} : value))} />
-                      <button type="button" className="text-button" aria-label={`Remove option ${index + 1}`} onClick={() => field("options", editing.options.filter((_, i) => i !== index))}>Remove</button>
-                    </div>)}
-                    <button type="button" className="outline-button" disabled={(editing.options || []).length >= 30} onClick={() => field("options", [...productOptions(editing), {name:"", price:null}])}>Add option</button>
-                  </div>
+                  <ProductOptionsEditor item={editing} field={field} />
                   {[
                     ["available", "Available for ordering"],
                     ["popular", "House favourite"],
-                    ["options_required", "Option Compulsory"],
                   ].map(([key, label]) => (
                     <label className="check-label" key={key}>
                       <input

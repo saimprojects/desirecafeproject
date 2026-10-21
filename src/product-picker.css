@@ -23,3 +23,18 @@
 .option-edit-row { display:flex; gap:8px; align-items:center; margin:8px 0; }
 .option-edit-row input { min-width:0; flex:1; }
 .product-options-editor { margin:20px 0; }
+.option-mode-toggle { position:relative; display:grid; grid-template-columns:1fr 1fr; padding:4px; margin:16px 0; border:1px solid #d9c7ad; background:#f1e9dd; border-radius:14px; }
+.option-mode-slider { position:absolute; left:4px; top:4px; bottom:4px; width:calc(50% - 4px); background:#8b3f0b; border-radius:10px; transition:transform .2s ease; pointer-events:none; }
+.option-mode-slider.multi { transform:translateX(100%); }
+.option-mode-toggle label { position:relative; text-align:center; padding:12px 8px; margin:0; cursor:pointer; font-size:12px; }
+.option-mode-toggle label.active { color:white; }
+.option-mode-toggle input { position:absolute; opacity:0; width:1px; height:1px; }
+.option-mode-toggle label:focus-within { outline:2px solid #ad7c3e; outline-offset:2px; border-radius:10px; }
+.edit-modal .option-category-editor { border:1px solid #dfd1bd; padding:16px; border-radius:12px; margin:20px 0; }
+.option-category-editor legend { font-weight:600; padding:0 6px; }
+.remove-option-category { display:block; margin-top:14px; color:#a03925; }
+.picker-category-options { flex-direction:column; }
+.picker-category-options label { width:100%; }
+.picker-category-options label span { flex:1; }
+.picker-category-options small { white-space:nowrap; }
+@media (prefers-reduced-motion:reduce) { .option-mode-slider { transition:none; } }
