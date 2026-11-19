@@ -1,3 +1,4 @@
+import { saveMenuItem } from "../lib/saveMenuItem";
 import { ProductOptionsEditor } from "../components/ProductOptionsEditor";
 import { productOptions } from "../lib/productOptions";
 import { PasswordField } from "../components/PasswordField";
@@ -25,6 +26,7 @@ import {
   Banknote,
   PackageCheck,
   Clock3,
+  TicketPercent,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { api, session, aed, dateTime, statusName, dubaiDate } from "../lib/api";
@@ -612,17 +614,19 @@ function MenuEditor() {
     }
     setBusy(true);
     try {
-      await api(editing ? "menu-item/" : "category/", editing ? {
+      if (editing) await saveMenuItem({
         ...editing,
         options: editing.option_mode === "multi" ? undefined : productOptions(editing).map(option => ({ ...option, name: option.name.trim() })),
         option_groups: editing.option_mode === "multi" ? editing.option_groups || [] : undefined,
-      } : category);
+      });
+      else await api("category/", category);
       toast.success("Menu updated");
       setEditing(null);
       setCategory(null);
       reload();
     } catch (err) {
-      toast.error(err.message);
+      if (err.savedId) setEditing(current => current ? {...current, id:err.savedId} : current);
+      toast.error(err.message, {duration:10000});
     } finally {
       setBusy(false);
     }
@@ -913,6 +917,42 @@ function MenuEditor() {
   );
 }
 
+const blankCoupon = { code: "", discount_type: "percentage", value: "", active: true };
+
+function Coupons() {
+  const [coupons, setCoupons] = useState([]);
+  const [form, setForm] = useState(blankCoupon);
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const load = useCallback(async () => {
+    try { const data = await api("coupons/"); setCoupons(data.coupons); setError(""); }
+    catch (e) { setError(e.message); }
+  }, []);
+  useEffect(() => { load(); }, [load]);
+  async function submit(e) {
+    e.preventDefault(); setBusy(true); setError("");
+    try { await api("coupons/", form); setForm(blankCoupon); await load(); toast.success("Coupon saved"); }
+    catch (err) { setError(err.message); }
+    finally { setBusy(false); }
+  }
+  return <>
+    <div className="page-heading"><div><span className="eyebrow">OFFERS FOR YOUR CUSTOMERS</span><h1>Coupons</h1><p>Create and manage checkout discounts.</p></div></div>
+    {error && <div role="alert" className="error-box">{error}</div>}
+    <form className="surface settings-form" onSubmit={submit}>
+      <h2>{form.id ? "Edit coupon" : "Create coupon"}</h2>
+      <fieldset disabled={busy}>
+        <label>Coupon code<input required maxLength={40} pattern="[A-Za-z0-9_-]+" value={form.code} onChange={e => setForm({...form, code: e.target.value.toUpperCase()})} placeholder="e.g. WELCOME10" /></label>
+        <label>Discount type<select value={form.discount_type} onChange={e => setForm({...form, discount_type: e.target.value})}><option value="percentage">Percentage (%)</option><option value="fixed">Fixed amount (AED)</option></select></label>
+        <label>{form.discount_type === "percentage" ? "Discount (%)" : "Discount amount (AED)"}<input required type="number" min="0.01" max={form.discount_type === "percentage" ? "100" : "999999.99"} step="0.01" value={form.value} onChange={e => setForm({...form, value: e.target.value})} /></label>
+        <label className="check-label"><input type="checkbox" checked={form.active} onChange={e => setForm({...form, active: e.target.checked})} />Active</label>
+      </fieldset>
+      <p className="muted">Discount applies to the item subtotal; delivery charges remain separate.</p>
+      <button className="cafe-button" disabled={busy}>{busy ? "Saving…" : "Save coupon"}</button>{form.id && <button type="button" className="text-button" onClick={() => setForm(blankCoupon)}>Cancel editing</button>}
+    </form>
+    <section className="surface table-surface"><h2>Coupon codes</h2>{coupons.length === 0 ? <p>No coupons yet.</p> : <div className="table-wrap"><table><thead><tr><th>Code</th><th>Discount</th><th>Status</th><th></th></tr></thead><tbody>{coupons.map(c => <tr key={c.id}><td><strong>{c.code}</strong></td><td>{c.discount_type === "percentage" ? `${Number(c.value)}%` : aed(c.value)}</td><td>{c.active ? "Active" : "Inactive"}</td><td><button type="button" className="text-button" onClick={() => setForm(c)}>Edit</button></td></tr>)}</tbody></table></div>}</section>
+  </>;
+}
+
 function StoreSettings() {
   const [form, setForm] = useState(null),
     [error, setError] = useState(""),
@@ -1191,6 +1231,7 @@ function AdminShell({ user, onLogout }) {
             [LayoutDashboard, "Dashboard", "/admin"],
             [ShoppingBag, "Orders", "/admin/orders"],
             [UtensilsCrossed, "Menu", "/admin/menu"],
+            [TicketPercent, "Coupons", "/admin/coupons"],
             [Settings, "Settings", "/admin/settings"],
           ].map(([Icon, label, path]) => (
             <NavLink key={path} to={path} end={path === "/admin"}>
@@ -1322,6 +1363,7 @@ function AdminShell({ user, onLogout }) {
               element={<Orders open={open} acknowledge={acknowledge} />}
             />
             <Route path="menu" element={<MenuEditor />} />
+            <Route path="coupons" element={<Coupons />} />
             <Route path="settings" element={<StoreSettings />} />
             <Route path="*" element={<Dashboard open={open} />} />
           </Routes>

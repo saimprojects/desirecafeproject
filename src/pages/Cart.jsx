@@ -16,6 +16,10 @@ export default function Cart() {
   const [busy, setBusy] = useState(false),
     sending = useRef(false),
     [error, setError] = useState("");
+  const [code, setCode] = useState("");
+  const [coupon, setCoupon] = useState(null);
+  const [couponError, setCouponError] = useState("");
+  const [applying, setApplying] = useState(false);
   const pendingCheckout = useRef(null);
   const settings = shop.data?.settings,
     areas =
@@ -23,14 +27,30 @@ export default function Cart() {
         .split("\n")
         .map((x) => x.trim())
         .filter(Boolean) || [];
-  const total = shop.subtotal + Number(settings?.delivery_fee || 0);
+  const applied = coupon && coupon.subtotal === shop.subtotal ? coupon : null;
+  const total = shop.subtotal - Number(applied?.discount || 0) + Number(settings?.delivery_fee || 0);
   const valid =
     shop.lines.length &&
     shop.lines.every((x) => x.valid) &&
     settings?.is_open &&
     shop.subtotal >= Number(settings.minimum_order) &&
+    !applying && (!coupon || applied) &&
     !shop.error;
   const change = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  async function applyCoupon() {
+    setApplying(true);
+    setCouponError("");
+    setCoupon(null);
+    try {
+      const result = await api("coupon-preview/", { code, subtotal: shop.subtotal.toFixed(2) });
+      setCoupon({ ...result, subtotal: shop.subtotal });
+      setCode(result.code);
+    } catch (err) {
+      setCouponError(err.message);
+    } finally {
+      setApplying(false);
+    }
+  }
   async function submit(e) {
     e.preventDefault();
     if (!valid || sending.current) return;
@@ -40,6 +60,7 @@ export default function Cart() {
     const payload = {
       ...form,
       expected_delivery_fee: settings.delivery_fee,
+      ...(applied ? { coupon_code: applied.code, expected_discount: applied.discount } : {}),
       items: shop.lines.map((x) => ({
         item_id: x.item_id,
         addon_id: x.addon_id,
@@ -158,6 +179,15 @@ export default function Cart() {
               </Link>
             </section>
             <section className="surface totals">
+              <h2>Coupon code</h2>
+              <div className="coupon-entry">
+                <label htmlFor="coupon-code">Have a coupon?</label>
+                <input id="coupon-code" value={code} maxLength={40} disabled={busy || applying} onChange={e => { setCode(e.target.value); setCoupon(null); setCouponError(""); }} placeholder="Enter coupon code" />
+                <button type="button" className="outline-button" disabled={busy || applying || !code.trim()} onClick={applyCoupon}>{applying ? "Applying…" : "Apply"}</button>
+              </div>
+              {couponError && <p role="alert" className="error-text">{couponError}</p>}
+              {coupon && !applied && <p className="error-text">Your cart changed. Apply the coupon again or <button type="button" className="text-button" onClick={() => { setCoupon(null); setCode(""); }}>remove it</button>.</p>}
+              {applied && <p role="status">Coupon {applied.code} applied. <button type="button" className="text-button" onClick={() => { setCoupon(null); setCode(""); }}>Remove</button></p>}
               <div>
                 <span>Subtotal (VAT inclusive)</span>
                 <strong>{aed(shop.subtotal)}</strong>
@@ -166,6 +196,7 @@ export default function Cart() {
                 <span>Delivery</span>
                 <strong>{aed(settings?.delivery_fee)}</strong>
               </div>
+              {applied && <div><span>Discount ({applied.code})</span><strong>− {aed(applied.discount)}</strong></div>}
               <div className="grand-total">
                 <span>Total to pay on delivery</span>
                 <strong>{aed(total)}</strong>

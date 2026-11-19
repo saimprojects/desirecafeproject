@@ -16,6 +16,8 @@ import Admin from "./pages/Admin";
 import { ShopProvider } from "./components/ShopContext";
 import "./commerce.css";
 
+
+// new update demo picker
 // Scroll to Top Hook
 function ScrollToTop() {
   const { pathname } = useLocation();

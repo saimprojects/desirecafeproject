@@ -40,6 +40,7 @@ export function ReceiptContent({ order }) {
           <span>Delivery</span>
           <strong>{aed(order.delivery_fee)}</strong>
         </div>
+        {order.coupon_code && <div><span>Discount ({order.coupon_code})</span><strong>− {aed(order.discount)}</strong></div>}
         <div className="grand-total">
           <span>Total · COD</span>
           <strong>{aed(order.total)}</strong>

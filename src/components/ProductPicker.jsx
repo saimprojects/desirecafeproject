@@ -26,7 +26,7 @@ export function ProductPicker({ item, shop, close }) {
       <span className="picker-eyebrow">MAKE IT YOURS</span>
       <h2 id={`product-title-${item.id}`}>{item.name}</h2>
       {item.image && <img src={item.image} alt={item.name} className="product-photo picker-photo" />}
-      <p>{item.description}</p><strong>{aed(optionPrice(item, option, selections))} each</strong>
+      <p>{item.description}</p>
       <form onSubmit={e => {e.preventDefault(); if(ready && (multi ? shop.add(item, null, quantity, "", selections) : shop.add(item, null, quantity, option)) !== false) close();}}>
         {!multi && options.length > 0 && <fieldset><legend>Choose an option{item.options_required ? " (required)" : " (optional)"}</legend><div className="picker-options">
           {!item.options_required && <label className={!option ? "selected" : ""}><input type="radio" name="product-option" checked={!option} onChange={() => setOption("")} /><span>No option</span><small>{aed(item.price)}</small></label>}

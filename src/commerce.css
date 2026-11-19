@@ -415,6 +415,16 @@ button:disabled {
   margin: 13px 0;
   font-size: 13px;
 }
+.totals .coupon-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+  margin: 16px 0;
+}
+.coupon-entry label { grid-column: 1 / -1; }
+.coupon-entry input { min-width: 0; width: 100%; }
+.coupon-entry .outline-button { white-space: nowrap; }
 .totals p {
   font-size: 12px;
   color: var(--muted);

@@ -120,3 +120,16 @@ it("blocks duplicate clicks while checkout is in flight", async () => {
   finish({ token: "private-token" });
   await screen.findByText("Order confirmed");
 });
+
+it("applies a coupon to the displayed total and sends it with checkout", async () => {
+  api.mockResolvedValueOnce({ code: "TEN", discount: "2.95" }).mockResolvedValueOnce({ token: "private-token" });
+  mount();
+  fireEvent.change(screen.getByLabelText("Have a coupon?"), { target: { value: "ten" } });
+  fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+  await screen.findByText("Coupon TEN applied.", { exact: false });
+  expect(screen.getByRole("button", { name: /Place order/ }).textContent).toContain("26.55");
+  fill();
+  fireEvent.click(screen.getByRole("button", { name: /Place order/ }));
+  await screen.findByText("Order confirmed");
+  expect(api.mock.calls[1][1]).toMatchObject({ coupon_code: "TEN", expected_discount: "2.95" });
+});
