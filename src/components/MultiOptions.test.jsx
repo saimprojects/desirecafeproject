@@ -40,9 +40,9 @@ it("requires each compulsory category, adds prices, merges matching combinations
   fireEvent.click(screen.getByLabelText(/^El Salvador/));
   expect(screen.getByRole("button",{name:/Add 1 to cart/}).disabled).toBe(true);
   fireEvent.click(screen.getByLabelText(/^Iced/));
-  expect(screen.getByRole("button",{name:/Add 1 to cart/}).textContent).toContain("17.00");
+  expect(screen.getByRole("button",{name:"Add 1 to cart"}).disabled).toBe(false);
   fireEvent.click(screen.getByLabelText(/^Shot/));
-  expect(screen.getByRole("button",{name:/Add 1 to cart/}).textContent).toContain("20.00");
+  expect(screen.getByRole("button",{name:"Add 1 to cart"}).disabled).toBe(false);
   fireEvent.click(screen.getByLabelText("No option"));
   fireEvent.click(screen.getByRole("button",{name:/Add 1 to cart/}));
   choose(); choose("Brazil");

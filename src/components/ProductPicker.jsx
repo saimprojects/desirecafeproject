@@ -53,7 +53,7 @@ export function ProductPicker({ item, shop, close }) {
           <output aria-label="Selected quantity">{quantity}</output>
           <button type="button" aria-label="Increase quantity" disabled={quantity >= 50} onClick={() => setQuantity(q => q + 1)}><Plus size={18}/></button>
         </div></div>
-        <button className="picker-add" type="submit" disabled={!ready}>Add {quantity} to cart · {aed(optionPrice(item, option, selections) * quantity)}</button>
+        <button className="picker-add" type="submit" disabled={!ready}>Add {quantity} to cart</button>
         {!item.available && <p role="status">This item is currently unavailable.</p>}
       </form>
     </div>

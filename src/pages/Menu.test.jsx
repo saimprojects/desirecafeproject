@@ -103,14 +103,13 @@ it("requires a choice, accepts quantity, and shows existing cart choices on card
   expect(screen.queryByRole("dialog")).toBeNull();
 });
 
-it("updates the popup total using the optional option price", () => {
-  mount([{name:"Hot",price:null},{name:"Cold",price:"20.50"}]);
+it("adds a priced option without showing a total on the popup button", () => {
+  const shop = mount([{name:"Hot",price:null},{name:"Cold",price:"20.50"}]);
   fireEvent.click(screen.getByRole("button", {name:"Add Espresso to cart"}));
   fireEvent.click(screen.getByLabelText("Cold"));
   fireEvent.click(screen.getByRole("button", {name:"Increase quantity"}));
-  expect(screen.getByRole("button", {name:/Add 2 to cart/}).textContent).toContain("41.00");
-  fireEvent.click(screen.getByLabelText("Hot"));
-  expect(screen.getByRole("button", {name:/Add 2 to cart/}).textContent).toContain("29.50");
+  fireEvent.click(screen.getByRole("button", {name:"Add 2 to cart"}));
+  expect(shop.add).toHaveBeenCalledWith(expect.objectContaining({name:"Espresso"}), null, 2, "Cold");
 });
 
 
